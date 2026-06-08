@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — NightQuest</title>
+  <meta name="description" content="NightQuest privacy policy — no accounts, no signup, all data lives on your device. We collect zero personal information." />
+  <link rel="canonical" href="https://nightquest-one.vercel.app/privacy" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#0a0a0f; --panel:#111118; --border:#1e1e2e;
+      --gold:#f0c060; --purple:#7c3aed; --text:#e5e7eb; --muted:#6b7280;
+    }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Crimson Text', Georgia, serif; line-height: 1.7;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Header */
+    .hdr {
+      background: linear-gradient(180deg, #0d0d18, var(--bg));
+      border-bottom: 1px solid var(--border); padding: 1.25rem 0;
+    }
+    .hdr-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; gap: .75rem;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, #4c1d95, #0a0a0f);
+      border: 2px solid #581c87;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+      box-shadow: 0 0 16px rgba(124,58,237,.4);
+    }
+    .logo-name {
+      font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 900;
+      color: var(--gold); letter-spacing: .05em;
+    }
+    .btn {
+      display: inline-block; padding: .55rem 1.4rem;
+      background: linear-gradient(135deg, var(--purple), #4f46e5);
+      color: #fff; border-radius: .6rem;
+      font-family: 'Cinzel', serif; font-size: .78rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none; box-shadow: 0 0 18px rgba(124,58,237,.4);
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+
+    /* Breadcrumb */
+    .bc { padding: .6rem 0; font-size: .8rem; color: var(--muted); }
+    .bc a { color: #6b7280; text-decoration: none; }
+    .bc a:hover { color: var(--gold); }
+    .bc span { margin: 0 .35rem; }
+
+    /* Hero */
+    .hero { padding: 2.5rem 0 1.5rem; }
+    .eyebrow {
+      font-family: 'Cinzel', serif; font-size: .68rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--purple);
+      margin-bottom: .8rem;
+    }
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 900;
+      color: var(--gold); letter-spacing: .03em; line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+    .lastmod { color: var(--muted); font-size: .85rem; }
+
+    /* TL;DR */
+    .tldr {
+      border: 1px solid rgba(34,197,94,.25);
+      background: rgba(34,197,94,.06);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0 2.5rem;
+      display: flex; gap: .9rem;
+    }
+    .tldr-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .tldr-body { color: #a7f3d0; }
+    .tldr-body strong {
+      display: block; font-family: 'Cinzel', serif;
+      font-size: .72rem; letter-spacing: .25em;
+      text-transform: uppercase; color: #4ade80; margin-bottom: .4rem;
+    }
+
+    /* Body sections */
+    section { margin-bottom: 2.25rem; }
+    h2 {
+      font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700;
+      color: #f3f4f6; letter-spacing: .05em;
+      border-bottom: 1px solid var(--border); padding-bottom: .55rem;
+      margin-bottom: .9rem;
+    }
+    p { color: #d1d5db; margin-bottom: 1rem; }
+    ul { padding-left: 1.5rem; color: #d1d5db; }
+    li { margin-bottom: .35rem; }
+    code {
+      font-family: 'SF Mono', Menlo, monospace; font-size: .85rem;
+      background: rgba(255,255,255,.06);
+      padding: .12rem .4rem; border-radius: .3rem; color: var(--gold);
+    }
+    a.inline { color: var(--gold); text-decoration: none; border-bottom: 1px dotted rgba(240,192,96,.4); }
+    a.inline:hover { border-bottom-color: var(--gold); }
+
+    /* Footer */
+    .ftr {
+      border-top: 1px solid var(--border); padding: 1.75rem 0; margin-top: 2.5rem;
+      text-align: center; color: var(--muted); font-size: .8rem;
+    }
+    .ftr a { color: var(--gold); text-decoration: none; }
+    .ftr a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header class="hdr">
+    <div class="wrap">
+      <div class="hdr-inner">
+        <a class="logo" href="/">
+          <div class="logo-icon">⚔️</div>
+          <span class="logo-name">NightQuest</span>
+        </a>
+        <a class="btn" href="/?tab=quests">Play Now</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav class="bc" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>›</span>
+      <strong style="color:#d1d5db">Privacy</strong>
+    </nav>
+
+    <div class="hero">
+      <p class="eyebrow">NightQuest · Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="lastmod">Last updated: 6 June 2026</p>
+    </div>
+
+    <!-- TL;DR -->
+    <div class="tldr">
+      <span class="tldr-icon">🛡️</span>
+      <div class="tldr-body">
+        <strong>The short version</strong>
+        NightQuest is built around a single promise: <strong style="color:#fff; display:inline">no accounts, no signup, no servers storing your personal data.</strong> Everything you do — quests completed, XP earned, squads joined, plans saved — lives on your device in your browser's local storage. We don't have your name, email, phone, or location on any server.
+      </div>
+    </div>
+
+    <!-- What we collect -->
+    <section>
+      <h2>What we collect</h2>
+      <p>The only data NightQuest receives is anonymous aggregate analytics provided by Vercel:</p>
+      <ul>
+        <li><strong>Page views</strong> — which tabs are visited (no personal identifiers)</li>
+        <li><strong>Performance metrics</strong> — page load speed, layout shifts (Web Vitals)</li>
+        <li><strong>Country-level geography</strong> — derived from IP, not stored as a precise location</li>
+        <li><strong>Browser and device type</strong> — to make sure NightQuest works for everyone</li>
+      </ul>
+      <p>This data is processed by <a class="inline" href="https://vercel.com/analytics" target="_blank" rel="noopener">Vercel Analytics</a> and <a class="inline" href="https://vercel.com/docs/speed-insights" target="_blank" rel="noopener">Vercel Speed Insights</a> on our behalf. It is not linked to any individual user, contains no cookies, and is not sold or shared with third parties.</p>
+    </section>
+
+    <!-- What stays on your device -->
+    <section>
+      <h2>What lives on your device only</h2>
+      <p>Everything else stays on your device in browser <code>localStorage</code> and <code>sessionStorage</code>. We never see, transmit, or store the following:</p>
+      <ul>
+        <li>Your name, nickname, or any identity you enter</li>
+        <li>XP, level, completed quests, and quest history</li>
+        <li>Plans you build (venue names, times, notes)</li>
+        <li>Custom venues you add</li>
+        <li>Squad room codes you create or join</li>
+        <li>Trusted safety contacts and check-in timer settings</li>
+        <li>Your designated driver, if you've set one</li>
+        <li>Whether you've granted location permission and what city you selected</li>
+      </ul>
+      <p>You can wipe all of it instantly by clearing your browser's site data for this domain.</p>
+    </section>
+
+    <!-- Squad rooms & realtime -->
+    <section>
+      <h2>Squad rooms and real-time sync</h2>
+      <p>When you create or join a squad room, NightQuest uses <a class="inline" href="https://supabase.com/realtime" target="_blank" rel="noopener">Supabase Realtime Presence</a> to broadcast quest progress to other members of that specific room.</p>
+      <ul>
+        <li>Only your chosen player name, XP earned, and completed quest IDs are shared</li>
+        <li>The room code itself contains all task data — no central database stores it</li>
+        <li>Presence is ephemeral: when you close the tab, your data leaves the channel</li>
+        <li>Other room members can see your presence; nobody outside the room can</li>
+      </ul>
+      <p>Squad room codes are generated client-side using <code>crypto.getRandomValues</code> and embedded in the shareable URL. We never see or log them.</p>
+    </section>
+
+    <!-- Location -->
+    <section>
+      <h2>Location</h2>
+      <p>The Explore tab can optionally use your approximate location to sort venues by distance. If you grant location permission:</p>
+      <ul>
+        <li>Your coordinates are obtained from the browser's Geolocation API and stay on your device</li>
+        <li>We send them once to <a class="inline" href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> to look up your city name — they have their own <a class="inline" href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">privacy policy</a></li>
+        <li>If you decline, you can enter a city or postcode manually instead</li>
+      </ul>
+      <p>You can revoke location permission any time via your browser's site settings, or use the "Change" button in the Explore tab to reset.</p>
+    </section>
+
+    <!-- Cookies -->
+    <section>
+      <h2>Cookies and tracking</h2>
+      <p>NightQuest does not use cookies. We do not run any third-party tracking pixels, ad networks, or fingerprinting scripts. The only persistent storage is <code>localStorage</code> and <code>sessionStorage</code> on your own device, which are scoped to this domain and never sent to any server.</p>
+    </section>
+
+    <!-- Children -->
+    <section>
+      <h2>Age requirement</h2>
+      <p>NightQuest is intended for adults aged 21+ in jurisdictions where the legal drinking age is 21, and 18+ elsewhere. The content references alcohol and adult social settings. We do not knowingly collect data from anyone under these ages.</p>
+    </section>
+
+    <!-- Changes -->
+    <section>
+      <h2>Changes to this policy</h2>
+      <p>If we materially change how data is handled, the "Last updated" date at the top of this page will change. Because we don't have your email, we can't notify you directly — check this page before sharing data with the app if anything is important to you.</p>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2>Contact</h2>
+      <p>Questions about privacy? Open an issue on our public GitHub repository (linked from the homepage once we go live), or get in touch through the contact link in the app footer.</p>
+    </section>
+  </div>
+
+  <footer class="ftr">
+    <div class="wrap">
+      <p>
+        <a href="/">NightQuest</a> · Conquer the Night · No Account · Your Data Only
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

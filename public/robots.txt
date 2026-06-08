@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block service worker and build artefacts from indexing
+Disallow: /sw.js
+Disallow: /assets/
+
+Sitemap: https://nightquest-one.vercel.app/sitemap.xml

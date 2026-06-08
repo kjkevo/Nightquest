@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Theme Variables ──────────────────────────────────────────────────────
+   Used by tailwind.config.js via rgb(var(--nq-*) / <alpha>)
+   Values are space-separated R G B (no commas, no rgb() wrapper)
+────────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Dark mode — default */
+  --nq-bg:          10 10 15;
+  --nq-panel:       18 18 30;
+  --nq-border:      30 30 53;
+  --nq-gold:        240 192 96;
+  --nq-gold-dim:    160 120 48;
+  --nq-purple:      124 58 237;
+  --nq-purple-glow: 157 95 255;
+
+  /* Semantic text/surface tokens (used by light mode overrides) */
+  --nq-text-body:   232 224 208;
+  --nq-scrollbar-bg:    10 10 15;
+  --nq-scrollbar-thumb: 42 26 74;
+}
+
+/* Light mode — parchment / daylight RPG */
+.light-mode {
+  --nq-bg:          240 236 228;
+  --nq-panel:       250 248 244;
+  --nq-border:      212 204 192;
+  --nq-gold:        176 120 16;
+  --nq-gold-dim:    136 92 8;
+  --nq-purple:      91 33 182;
+  --nq-purple-glow: 109 40 217;
+  --nq-text-body:   30 24 18;
+  --nq-scrollbar-bg:    240 236 228;
+  --nq-scrollbar-thumb: 200 190 175;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html { transition: background-color 0.3s ease; }
+
+body {
+  margin: 0;
+  background-color: rgb(var(--nq-bg));
+  color: rgb(var(--nq-text-body));
+  font-family: 'Crimson Text', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgb(var(--nq-scrollbar-bg)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--nq-scrollbar-thumb)); border-radius: 3px; }
+
+/* ── Utilities ───────────────────────────────────────────────────────────────── */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── RPG scan-line overlay (dark mode only) ─────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+.light-mode body::before { opacity: 0; }
+
+/* ── Corner ornament lines ───────────────────────────────────────────────────── */
+.corner-tl::before, .corner-tl::after,
+.corner-br::before, .corner-br::after {
+  content: '';
+  position: absolute;
+  background: rgb(var(--nq-gold));
+  opacity: 0.6;
+}
+.corner-tl::before { top: 0; left: 0; width: 24px; height: 2px; }
+.corner-tl::after  { top: 0; left: 0; width: 2px;  height: 24px; }
+.corner-br::before { bottom: 0; right: 0; width: 24px; height: 2px; }
+.corner-br::after  { bottom: 0; right: 0; width: 2px;  height: 24px; }
+
+/* ── Gold shimmer text ───────────────────────────────────────────────────────── */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--nq-gold-dim)) 0%,
+    rgb(var(--nq-gold))     30%,
+    #ffe9a0                 50%,
+    rgb(var(--nq-gold))     70%,
+    rgb(var(--nq-gold-dim)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ── Rarity glow borders ─────────────────────────────────────────────────────── */
+.rarity-common    { border-color: #6b7280; box-shadow: 0 0 12px rgba(107,114,128,0.3); }
+.rarity-rare      { border-color: #3b82f6; box-shadow: 0 0 16px rgba(59,130,246,0.4); }
+.rarity-epic      { border-color: #7c3aed; box-shadow: 0 0 20px rgba(124,58,237,0.5); }
+.rarity-legendary { border-color: #f97316; box-shadow: 0 0 28px rgba(249,115,22,0.6), 0 0 60px rgba(249,115,22,0.2); }
+
+.rarity-common-text    { color: #9ca3af; }
+.rarity-rare-text      { color: #60a5fa; }
+.rarity-epic-text      { color: #a78bfa; }
+.rarity-legendary-text { color: #fb923c; }
+
+/* Subtler in light mode */
+.light-mode .rarity-common    { box-shadow: 0 0 6px rgba(107,114,128,0.2); }
+.light-mode .rarity-rare      { box-shadow: 0 0 8px rgba(59,130,246,0.2); }
+.light-mode .rarity-epic      { box-shadow: 0 0 10px rgba(124,58,237,0.25); }
+.light-mode .rarity-legendary { box-shadow: 0 0 14px rgba(249,115,22,0.3); }
+
+/* ── Quest card entrance ─────────────────────────────────────────────────────── */
+@keyframes questReveal {
+  0%   { opacity: 0; transform: translateY(40px) scale(0.92) rotateX(8deg); }
+  60%  { transform: translateY(-4px) scale(1.01) rotateX(0deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+}
+.quest-reveal {
+  animation: questReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  perspective: 800px;
+}
+
+/* ── Particle stars ──────────────────────────────────────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+.star { animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s); }
+.light-mode .star { opacity: 0.08 !important; }
+
+/* ── XP pop (floats up and fades when a task is ticked) ─────────────────────── */
+@keyframes xpPop {
+  0%   { opacity: 1;   transform: translateY(0)     scale(1);    }
+  30%  { opacity: 1;   transform: translateY(-10px)  scale(1.15); }
+  100% { opacity: 0;   transform: translateY(-38px)  scale(0.85); }
+}
+.xp-pop {
+  animation: xpPop 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Leaderboard row flash (fires when a squad member completes a task) ─────── */
+@keyframes leaderFlash {
+  0%   { background-color: rgba(240,192,96,0.28); box-shadow: 0 0 0 1px rgba(240,192,96,0.35); }
+  60%  { background-color: rgba(240,192,96,0.12); box-shadow: 0 0 0 1px rgba(240,192,96,0.15); }
+  100% { background-color: transparent;            box-shadow: none; }
+}
+.leader-flash { animation: leaderFlash 1.4s ease-out forwards; border-radius: 0.5rem; }
+
+/* ── Button press ────────────────────────────────────────────────────────────── */
+.btn-press:active { transform: scale(0.96); }
+
+/* ── Light mode: Tailwind gray overrides ─────────────────────────────────────
+   Flip the gray scale so dark text appears on light backgrounds.
+   These rules have higher specificity than the Tailwind utility classes.
+────────────────────────────────────────────────────────────────────────────── */
+
+/* Text */
+.light-mode .text-white     { color: #1e1812 !important; }
+.light-mode .text-gray-100  { color: #1e1812 !important; }
+.light-mode .text-gray-200  { color: #2d2820 !important; }
+.light-mode .text-gray-300  { color: #3d3428 !important; }
+.light-mode .text-gray-400  { color: #5a5048 !important; }
+.light-mode .text-gray-500  { color: #786c60 !important; }
+.light-mode .text-gray-600  { color: #a09488 !important; }
+.light-mode .text-gray-700  { color: #bdb3a8 !important; }
+.light-mode .text-gray-800  { color: #d0c8be !important; }
+.light-mode .text-gray-900  { color: #e0d8d0 !important; }
+
+/* Backgrounds */
+.light-mode .bg-quest-bg    { background-color: rgb(var(--nq-bg)) !important; }
+.light-mode .bg-black\/30   { background-color: rgba(0,0,0,0.08) !important; }
+.light-mode .bg-black\/50   { background-color: rgba(0,0,0,0.12) !important; }
+.light-mode .bg-gray-800    { background-color: rgb(var(--nq-panel)) !important; }
+.light-mode .bg-gray-800\/40{ background-color: rgba(var(--nq-panel), 0.4) !important; }
+.light-mode .bg-gray-800\/80{ background-color: rgba(var(--nq-panel), 0.8) !important; }
+.light-mode .bg-gray-900    { background-color: rgb(var(--nq-bg)) !important; }
+
+/* Borders */
+.light-mode .border-gray-700 { border-color: rgb(var(--nq-border)) !important; }
+.light-mode .border-gray-800 { border-color: rgb(var(--nq-border)) !important; }
+
+/* Gradient nav backgrounds (inline style override via CSS var) */
+.light-mode .nq-nav-fade {
+  background: linear-gradient(to top, rgb(var(--nq-bg)) 80%, transparent) !important;
+}
+
+/* Theme transition for all elements */
+.light-mode *,
+.light-mode *::before,
+.light-mode *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* ── Swipe tab indicator ──────────────────────────────────────────────────────── */
+@keyframes swipeHint {
+  0%   { opacity: 0; transform: translateX(0); }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; transform: translateX(12px); }
+  100% { opacity: 0; transform: translateX(16px); }
+}
+.swipe-hint { animation: swipeHint 1.5s ease-in-out; }
