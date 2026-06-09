@@ -1,6 +1,14 @@
-import { Sword, Users, Zap, AlertCircle, CheckCircle, Circle } from 'lucide-react'
+import { useState } from 'react'
+import { Sword, Users, Zap, AlertCircle, CheckCircle, Circle, X } from 'lucide-react'
 
 export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitGame }) {
+  const [showQuitConfirm, setShowQuitConfirm] = useState(false)
+
+  const handleQuitConfirm = () => {
+    setShowQuitConfirm(false)
+    if (onQuitGame) onQuitGame()
+  }
+
   if (!activeGame) {
     return (
       <div className="space-y-4 animate-fade-in">
@@ -113,10 +121,63 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, on
       {/* Quit Game Button */}
       {onQuitGame && (
         <button
-          onClick={onQuitGame}
+          onClick={() => setShowQuitConfirm(true)}
           className="w-full py-2.5 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-all btn-press">
           Quit Game
         </button>
+      )}
+
+      {/* Quit Confirmation Modal */}
+      {showQuitConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: 'rgba(5,5,10,0.85)', backdropFilter: 'blur(8px)' }}>
+          <div className="bg-quest-panel border border-quest-border rounded-2xl p-6 max-w-sm w-full space-y-4 animate-fade-in">
+            {/* Header */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-red-900/20 border border-red-800/30 flex items-center justify-center">
+                <AlertCircle size={18} className="text-red-400" />
+              </div>
+              <h2 className="font-display text-lg font-black text-white">Are You Sure?</h2>
+            </div>
+
+            {/* Message */}
+            <p className="font-body text-sm text-gray-400">
+              Quitting will abandon your current game. All progress will be lost.
+            </p>
+
+            {/* Game Info */}
+            <div className="p-3 rounded-lg bg-quest-bg border border-quest-border">
+              <p className="font-display text-[10px] uppercase tracking-widest text-gray-600 mb-2">Current Game</p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{activeGame.outing?.emoji}</span>
+                  <div>
+                    <p className="font-display text-xs font-bold text-white">{activeGame.outing?.label}</p>
+                    <p className="font-display text-[9px] text-gray-600">{activeGame.difficulty?.label}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="font-display text-sm font-bold text-quest-gold">{activeGame.sessionXP || 0} XP</p>
+                  <p className="font-display text-[9px] text-gray-600">{activeGame.completed || 0}/{activeGame.total || 0}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => setShowQuitConfirm(false)}
+                className="py-2.5 rounded-xl border border-quest-border font-display text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-gray-300 transition-all btn-press">
+                <X size={12} className="inline mr-1" /> Cancel
+              </button>
+              <button
+                onClick={handleQuitConfirm}
+                className="py-2.5 rounded-xl border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-all btn-press bg-red-900/10">
+                Quit Game
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   )
