@@ -357,6 +357,13 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
 
   return (
     <div className="space-y-4 animate-fade-in">
+      {/* Stopwatch timer at the very top (if enabled) */}
+      {timerEnabled && timerStartTime && (
+        <div className="bg-quest-gold/10 border-2 border-quest-gold rounded-2xl p-4 animate-fade-in">
+          <Stopwatch startTime={timerStartTime} />
+        </div>
+      )}
+
       {/* Header with XP pops */}
       <div className="relative flex items-center gap-3">
         <button onClick={onNewGame} className="w-8 h-8 flex items-center justify-center rounded-xl border border-quest-border text-gray-500 hover:text-gray-200 transition-colors">
@@ -388,11 +395,6 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
         PHASES={PHASES}
         onEndNight={endNight}
       />
-
-      {/* Stopwatch timer (if enabled) */}
-      {timerEnabled && timerStartTime && (
-        <Stopwatch startTime={timerStartTime} />
-      )}
 
       {/* Progress bar */}
       <div className="bg-quest-panel border border-quest-border rounded-xl px-4 py-3 space-y-2">
