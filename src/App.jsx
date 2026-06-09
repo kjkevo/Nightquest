@@ -260,7 +260,7 @@ export default function App() {
 
           {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
           {tab === 'squad'  && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
-          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} />}
+          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitGame={() => setActiveGame(null)} />}
           {tab === 'plan'   && <PlanTab  onComplete={handleComplete} />}
           {tab === 'nights' && <NightsHub />}
         </main>

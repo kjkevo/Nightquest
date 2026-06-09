@@ -1,6 +1,6 @@
-import { Sword, Users, Zap, AlertCircle } from 'lucide-react'
+import { Sword, Users, Zap, AlertCircle, CheckCircle, Circle } from 'lucide-react'
 
-export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad }) {
+export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitGame }) {
   if (!activeGame) {
     return (
       <div className="space-y-4 animate-fade-in">
@@ -36,6 +36,7 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad }) 
   // Active game view
   return (
     <div className="space-y-4 animate-fade-in">
+      {/* Game Header */}
       <div className="rounded-2xl border-2 border-quest-gold/30 bg-quest-panel p-6" style={{ boxShadow: '0 0 20px rgba(240,192,96,0.08)' }}>
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-lg bg-quest-gold/10 border border-quest-gold/30 flex items-center justify-center">
@@ -79,6 +80,44 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad }) 
           Resume Game →
         </button>
       </div>
+
+      {/* Missions List */}
+      {activeGame.tasks && activeGame.tasks.length > 0 && (
+        <div className="space-y-2">
+          <p className="font-display text-xs uppercase tracking-widest text-gray-600 px-1">Missions</p>
+          {activeGame.tasks.map((task) => (
+            <div key={task.id} className="flex items-start gap-3 p-3 rounded-lg bg-quest-panel border border-quest-border">
+              <div className="mt-1 shrink-0">
+                {activeGame.completedIds?.includes(task.id) ? (
+                  <CheckCircle size={16} className="text-green-400" />
+                ) : (
+                  <Circle size={16} className="text-gray-600" />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className={`font-display text-xs font-bold ${activeGame.completedIds?.includes(task.id) ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
+                  {task.title}
+                </p>
+                <p className="font-body text-[10px] text-gray-600 mt-1 line-clamp-2">
+                  {task.desc || task.description}
+                </p>
+              </div>
+              <div className="shrink-0 text-right">
+                <p className="font-display text-xs font-bold text-quest-gold">+{task.xp}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Quit Game Button */}
+      {onQuitGame && (
+        <button
+          onClick={onQuitGame}
+          className="w-full py-2.5 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-all btn-press">
+          Quit Game
+        </button>
+      )}
     </div>
   )
 }

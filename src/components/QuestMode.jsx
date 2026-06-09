@@ -538,12 +538,12 @@ export default function QuestMode({ onComplete, totalXP, onGameStart }) {
 
   const handleTimerEnable = () => {
     setSession(s => ({ ...s, step: 'active', timerEnabled: true, timerStartTime: Date.now() }))
-    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length })
+    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length, tasks, completedIds: [] })
   }
 
   const handleTimerDisable = () => {
     setSession(s => ({ ...s, step: 'active', timerEnabled: false, timerStartTime: null }))
-    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length })
+    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length, tasks, completedIds: [] })
   }
 
   const handleTaskComplete = useCallback((task) => {

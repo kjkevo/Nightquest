@@ -1130,7 +1130,7 @@ export default function SquadMode({ onComplete, totalXP, onGameStart }) {
         // Save session so it survives tab close
         setSquadSession({ view: 'active', players, outing, difficulty: d, tasks: t, completedIds: [], xpEarned: 0 })
         // Notify parent of active game
-        if (onGameStart) onGameStart({ outing, difficulty: d, sessionXP: 0, completed: 0, total: t.length })
+        if (onGameStart) onGameStart({ outing, difficulty: d, sessionXP: 0, completed: 0, total: t.length, tasks: t, completedIds: [] })
       }} />
     </div>
   }
