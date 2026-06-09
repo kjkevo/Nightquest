@@ -55,10 +55,6 @@ export default function NightTimerBar({ formatted, phase, phaseIndex, elapsedMin
                 boxShadow: i === phaseIndex ? `0 0 6px ${p.color}` : 'none',
               }} />
           ))}
-          <span className="font-display text-[10px] uppercase tracking-wider truncate ml-1"
-            style={{ color: phase.color }}>
-            {phase.label}
-          </span>
         </div>
 
         {/* Expand toggle */}
