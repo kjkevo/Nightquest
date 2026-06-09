@@ -473,52 +473,50 @@ function SquadMenu({ onCreateRoom, onCreateSquad, onVSMode, onJoin, pendingRoom 
 
       {/* Primary: Squad Room (cross-device) */}
       <button onClick={onCreateRoom}
-        className="w-full flex items-center gap-4 p-5 bg-quest-panel border-2 border-quest-gold/30 rounded-2xl hover:border-quest-gold/60 transition-all btn-press text-left"
+        className="w-full flex items-center gap-4 p-6 bg-quest-panel border-2 border-quest-gold/30 rounded-2xl hover:border-quest-gold/60 transition-all btn-press text-left min-h-[140px]"
         style={{ boxShadow: '0 0 20px rgba(240,192,96,0.08)' }}>
-        <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+        <div className="w-16 h-16 rounded-xl flex items-center justify-center shrink-0"
           style={{ background: 'rgba(240,192,96,0.12)', border: '1px solid rgba(240,192,96,0.25)' }}>
-          <Share2 size={22} className="text-quest-gold" />
+          <Share2 size={28} className="text-quest-gold" />
         </div>
         <div>
-          <p className="font-display text-sm font-bold text-white">Create Squad Room</p>
-          <p className="font-body text-xs text-gray-500 mt-0.5">Share a code — friends join on their own phones</p>
-          <span className="inline-block mt-1 font-display text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-quest-gold/10 border border-quest-gold/20 text-quest-gold">Cross-device</span>
+          <p className="font-display text-base font-bold text-white">Create Squad Room</p>
+          <p className="font-body text-sm text-gray-500 mt-1">Share a code — friends join on their own phones</p>
+          <span className="inline-block mt-2 font-display text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-quest-gold/10 border border-quest-gold/20 text-quest-gold">Cross-device</span>
         </div>
       </button>
 
-      {/* Secondary row */}
-      <div className="grid grid-cols-2 gap-3">
-        <button onClick={onCreateSquad}
-          className="flex items-center gap-3 p-4 bg-quest-panel border border-quest-border rounded-2xl hover:border-quest-gold-dim transition-all btn-press text-left">
-          <div className="w-9 h-9 rounded-xl bg-quest-gold/10 border border-quest-gold/20 flex items-center justify-center shrink-0">
-            <Users size={16} className="text-quest-gold" />
-          </div>
-          <div>
-            <p className="font-display text-xs font-bold text-white">Same Device</p>
-            <p className="font-body text-[10px] text-gray-600 mt-0.5">Pass one phone</p>
-          </div>
-        </button>
-
-        <button onClick={onVSMode}
-          className="flex items-center gap-3 p-4 bg-quest-panel border border-quest-border rounded-2xl hover:border-red-800/60 transition-all btn-press text-left">
-          <div className="w-9 h-9 rounded-xl bg-red-900/20 border border-red-800/30 flex items-center justify-center shrink-0">
-            <Swords size={16} className="text-red-400" />
-          </div>
-          <div>
-            <p className="font-display text-xs font-bold text-white">VS Mode</p>
-            <p className="font-body text-[10px] text-gray-600 mt-0.5">Compete</p>
-          </div>
-        </button>
-      </div>
-
-      <button onClick={onJoin}
-        className="w-full flex items-center gap-4 p-4 bg-quest-panel border border-quest-border rounded-2xl hover:border-purple-800 transition-all btn-press text-left">
-        <div className="w-10 h-10 rounded-xl bg-purple-900/20 border border-purple-800/30 flex items-center justify-center shrink-0">
-          <Hash size={18} className="text-purple-400" />
+      {/* All other buttons - full width and consistent size */}
+      <button onClick={onCreateSquad}
+        className="w-full flex items-center gap-4 p-6 bg-quest-panel border border-quest-border rounded-2xl hover:border-quest-gold-dim transition-all btn-press text-left min-h-[120px]">
+        <div className="w-14 h-14 rounded-xl bg-quest-gold/10 border border-quest-gold/20 flex items-center justify-center shrink-0">
+          <Users size={24} className="text-quest-gold" />
         </div>
         <div>
-          <p className="font-display text-sm font-bold text-white">Enter a Code</p>
-          <p className="font-body text-xs text-gray-500 mt-0.5">Join a squad room or VS game with a 6-char code</p>
+          <p className="font-display text-base font-bold text-white">Same Device</p>
+          <p className="font-body text-sm text-gray-600 mt-1">Pass one phone around and play together</p>
+        </div>
+      </button>
+
+      <button onClick={onVSMode}
+        className="w-full flex items-center gap-4 p-6 bg-quest-panel border border-quest-border rounded-2xl hover:border-red-800/60 transition-all btn-press text-left min-h-[120px]">
+        <div className="w-14 h-14 rounded-xl bg-red-900/20 border border-red-800/30 flex items-center justify-center shrink-0">
+          <Swords size={24} className="text-red-400" />
+        </div>
+        <div>
+          <p className="font-display text-base font-bold text-white">VS Mode</p>
+          <p className="font-body text-sm text-gray-600 mt-1">Compete head-to-head with another team</p>
+        </div>
+      </button>
+
+      <button onClick={onJoin}
+        className="w-full flex items-center gap-4 p-6 bg-quest-panel border border-quest-border rounded-2xl hover:border-purple-800 transition-all btn-press text-left min-h-[120px]">
+        <div className="w-14 h-14 rounded-xl bg-purple-900/20 border border-purple-800/30 flex items-center justify-center shrink-0">
+          <Hash size={24} className="text-purple-400" />
+        </div>
+        <div>
+          <p className="font-display text-base font-bold text-white">Enter a Code</p>
+          <p className="font-body text-sm text-gray-500 mt-1">Join a squad room or VS game with a 6-char code</p>
         </div>
       </button>
     </div>
