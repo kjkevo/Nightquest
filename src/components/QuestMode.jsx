@@ -6,6 +6,8 @@ import { useNightTimer } from '../hooks/useNightTimer'
 import { inferCategory, estimateMins, ALL_CATEGORIES } from '../data/questMeta'
 import NightComplete from './NightComplete'
 import NightTimerBar from './NightTimerBar'
+import TimerSetupModal from './TimerSetupModal'
+import Stopwatch from './Stopwatch'
 
 // ─── Outing Picker ─────────────────────────────────────────────────────────────
 function OutingPicker({ onPick }) {
@@ -247,7 +249,7 @@ function TaskRow({ task, index, completed, onComplete, diffColor, inPhase }) {
 }
 
 // ─── Active Task List ──────────────────────────────────────────────────────────
-function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, onRerollMissions, totalXPEarned, completedIds, totalXP }) {
+function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, onRerollMissions, totalXPEarned, completedIds, totalXP, timerEnabled, timerStartTime }) {
   const completed = completedIds   // Set provided by parent (persisted)
   const diffCfg   = DIFFICULTIES.find(d => d.id === difficulty.id)
   const popIdRef  = useRef(0)
@@ -387,6 +389,11 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
         onEndNight={endNight}
       />
 
+      {/* Stopwatch timer (if enabled) */}
+      {timerEnabled && timerStartTime && (
+        <Stopwatch startTime={timerStartTime} />
+      )}
+
       {/* Progress bar */}
       <div className="bg-quest-panel border border-quest-border rounded-xl px-4 py-3 space-y-2">
         <div className="flex items-center justify-between">
@@ -509,6 +516,8 @@ export default function QuestMode({ onComplete, totalXP }) {
   const tasks        = session?.tasks        ?? []
   const sessionXP    = session?.sessionXP    ?? 0
   const completedIds = new Set(session?.completedIds ?? [])
+  const timerEnabled = session?.timerEnabled ?? false
+  const timerStartTime = session?.timerStartTime ?? null
 
   const handleOutingPick = (o) =>
     setSession(s => ({ ...s, step: 'difficulty', outing: o, completedIds: [], sessionXP: 0 }))
@@ -532,7 +541,15 @@ export default function QuestMode({ onComplete, totalXP }) {
 
   const handleDiffPick = (d) => {
     const picked = pickFreshSet(outing, d)
-    setSession({ step: 'active', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [] })
+    setSession({ step: 'timer', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [] })
+  }
+
+  const handleTimerEnable = () => {
+    setSession(s => ({ ...s, step: 'active', timerEnabled: true, timerStartTime: Date.now() }))
+  }
+
+  const handleTimerDisable = () => {
+    setSession(s => ({ ...s, step: 'active', timerEnabled: false }))
   }
 
   const handleTaskComplete = useCallback((task) => {
@@ -565,6 +582,7 @@ export default function QuestMode({ onComplete, totalXP }) {
     <div className="flex-1 flex flex-col min-h-0">
       {step === 'outing'     && <OutingPicker onPick={handleOutingPick} />}
       {step === 'difficulty' && <DifficultyPicker outing={outing} onPick={handleDiffPick} onBack={() => setSession(s => ({ ...s, step: 'outing' }))} />}
+      {step === 'timer'      && <TimerSetupModal onEnable={handleTimerEnable} onDisable={handleTimerDisable} />}
       {step === 'active'     && (
         <ActiveTaskList
           tasks={tasks}
@@ -576,6 +594,8 @@ export default function QuestMode({ onComplete, totalXP }) {
           totalXPEarned={sessionXP}
           completedIds={completedIds}
           totalXP={totalXP}
+          timerEnabled={timerEnabled}
+          timerStartTime={timerStartTime}
         />
       )}
     </div>
