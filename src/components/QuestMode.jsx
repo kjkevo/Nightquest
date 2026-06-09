@@ -386,16 +386,6 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
         </div>
       </div>
 
-      {/* Night timer */}
-      <NightTimerBar
-        formatted={formatted}
-        phase={phase}
-        phaseIndex={phaseIndex}
-        elapsedMinutes={elapsedMinutes}
-        PHASES={PHASES}
-        onEndNight={endNight}
-      />
-
       {/* Progress bar */}
       <div className="bg-quest-panel border border-quest-border rounded-xl px-4 py-3 space-y-2">
         <div className="flex items-center justify-between">
