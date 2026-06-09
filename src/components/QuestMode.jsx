@@ -489,8 +489,8 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
           </button>
         )}
         <button onClick={onNewGame}
-          className={`${onRerollMissions ? '' : 'col-span-3'} flex items-center justify-center gap-1.5 py-3 rounded-xl border border-quest-border font-display text-[10px] uppercase tracking-widest text-gray-500 hover:text-gray-300 hover:border-gray-700 transition-all btn-press`}>
-          <ChevronLeft size={11} /> Menu
+          className={`${onRerollMissions ? '' : 'col-span-3'} flex items-center justify-center gap-1.5 py-3 rounded-xl border border-red-900/40 font-display text-[10px] uppercase tracking-widest text-red-400 hover:text-red-300 hover:border-red-700 transition-all btn-press`}>
+          <X size={11} /> Quit Quest
         </button>
       </div>
     </div>
