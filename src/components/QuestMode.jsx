@@ -549,7 +549,7 @@ export default function QuestMode({ onComplete, totalXP }) {
   }
 
   const handleTimerDisable = () => {
-    setSession(s => ({ ...s, step: 'active', timerEnabled: false }))
+    setSession(s => ({ ...s, step: 'active', timerEnabled: false, timerStartTime: null }))
   }
 
   const handleTaskComplete = useCallback((task) => {
