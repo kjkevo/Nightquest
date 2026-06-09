@@ -924,7 +924,7 @@ function VSScoreboard({ team1, team2, team1Done, team2Done }) {
 }
 
 // ─── Main SquadMode ────────────────────────────────────────────────────────────
-export default function SquadMode({ onComplete, totalXP }) {
+export default function SquadMode({ onComplete, totalXP, onGameStart }) {
   // view stack:
   //   'menu' | 'createSize' | 'createOuting' | 'createDiff' | 'active'
   //   'roomOuting' | 'roomDiff' | 'roomPlayerCount' | 'roomShare' | 'roomActive'
@@ -1129,6 +1129,8 @@ export default function SquadMode({ onComplete, totalXP }) {
         setDiff(d); setTasks(t); setView('active')
         // Save session so it survives tab close
         setSquadSession({ view: 'active', players, outing, difficulty: d, tasks: t, completedIds: [], xpEarned: 0 })
+        // Notify parent of active game
+        if (onGameStart) onGameStart({ outing, difficulty: d, sessionXP: 0, completed: 0, total: t.length })
       }} />
     </div>
   }

@@ -498,7 +498,7 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
 }
 
 // ─── Main QuestMode ────────────────────────────────────────────────────────────
-export default function QuestMode({ onComplete, totalXP }) {
+export default function QuestMode({ onComplete, totalXP, onGameStart }) {
   const [session, setSession, clearSession] = useActiveSession('nq_session_solo')
 
   // Derive state from persisted session (falls back to initial values)
@@ -538,10 +538,12 @@ export default function QuestMode({ onComplete, totalXP }) {
 
   const handleTimerEnable = () => {
     setSession(s => ({ ...s, step: 'active', timerEnabled: true, timerStartTime: Date.now() }))
+    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length })
   }
 
   const handleTimerDisable = () => {
     setSession(s => ({ ...s, step: 'active', timerEnabled: false, timerStartTime: null }))
+    if (onGameStart) onGameStart({ outing, difficulty, sessionXP, completed: 0, total: tasks.length })
   }
 
   const handleTaskComplete = useCallback((task) => {

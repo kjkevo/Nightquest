@@ -10,6 +10,7 @@ import NightPlanner   from './components/NightPlanner'
 import NightsHub      from './components/NightsHub'
 import VenueFeed      from './components/VenueFeed'
 import SafetyHub      from './components/SafetyHub'
+import ResumeTab      from './components/ResumeTab'
 import NotFound       from './components/NotFound'
 import { useGameState }  from './hooks/useGameState'
 import { useTheme }      from './hooks/useTheme'
@@ -18,7 +19,7 @@ import { useMemories }   from './hooks/useMemories'
 import { getLevelInfo }  from './data/quests'
 import { getPlanParam }  from './hooks/usePlanner'
 
-const TAB_ORDER = ['quests', 'squad', 'plan', 'nights']
+const TAB_ORDER = ['quests', 'squad', 'resume', 'plan', 'nights']
 
 // ─── XP Bar ───────────────────────────────────────────────────────────────────
 function XPBar({ levelInfo }) {
@@ -71,10 +72,11 @@ function ThemeToggle({ isDark, onToggle }) {
 }
 
 // ─── Bottom Nav ───────────────────────────────────────────────────────────────
-function BottomNav({ tab, onChange }) {
+function BottomNav({ tab, onChange, hasActiveGame }) {
   const tabs = [
     { id: 'quests', label: 'Quest',  Icon: Sword        },
     { id: 'squad',  label: 'Squad',  Icon: Users        },
+    { id: 'resume', label: 'Resume', Icon: Compass, badge: hasActiveGame },
     { id: 'plan',   label: 'Plan',   Icon: CalendarDays },
     { id: 'nights', label: 'Nights', Icon: BookOpen     },
   ]
@@ -82,7 +84,7 @@ function BottomNav({ tab, onChange }) {
     <div className="fixed bottom-0 inset-x-0 z-40 bg-quest-bg border-t border-quest-border"
       style={{ boxShadow: '0 -4px 40px rgba(0,0,0,0.6)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
       <div className="max-w-lg mx-auto flex h-[72px]">
-        {tabs.map(({ id, label, Icon }) => (
+        {tabs.map(({ id, label, Icon, badge }) => (
           <button key={id} onClick={() => onChange(id)}
             className={`relative flex-1 h-full flex flex-col items-center justify-center gap-1.5 font-display text-[10px] uppercase tracking-widest font-bold transition-all duration-200 btn-press
               ${tab === id
@@ -91,7 +93,12 @@ function BottomNav({ tab, onChange }) {
             {tab === id && (
               <span className="absolute inset-x-2 top-0 h-[2px] rounded-full bg-quest-gold" />
             )}
-            <Icon size={22} />
+            <div className="relative">
+              <Icon size={22} />
+              {badge && (
+                <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-quest-gold animate-pulse" />
+              )}
+            </div>
             {label}
           </button>
         ))}
@@ -163,6 +170,9 @@ export default function App() {
   const { isDark, toggleTheme } = useTheme()
   const { online, wasOffline, dismissReconnect } = useNetwork()
   const { addSessionXP } = useMemories()
+
+  // Track active games
+  const [activeGame, setActiveGame] = useState(null)
 
   const [tab, setTab] = useState(() => {
     const params = new URLSearchParams(window.location.search)
@@ -248,14 +258,15 @@ export default function App() {
         <main className="flex-1 flex flex-col gap-4 px-4 pt-2 pb-28 max-w-lg mx-auto w-full overflow-y-auto">
           <XPBar levelInfo={levelInfo} />
 
-          {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} />}
-          {tab === 'squad'  && <SquadMode onComplete={handleComplete} totalXP={totalXP} />}
+          {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
+          {tab === 'squad'  && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
+          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} />}
           {tab === 'plan'   && <PlanTab  onComplete={handleComplete} />}
           {tab === 'nights' && <NightsHub />}
         </main>
       </div>
 
-      <BottomNav tab={tab} onChange={setTab} />
+      <BottomNav tab={tab} onChange={setTab} hasActiveGame={!!activeGame} />
     </div>
   )
 }
