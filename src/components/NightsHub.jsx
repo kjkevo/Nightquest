@@ -44,9 +44,6 @@ const TIER_COLORS = {
 // ─── Sub-tab labels ───────────────────────────────────────────────────────────
 const SUB_TABS = [
   { id: 'recap',      label: 'Recap',      Icon: BookOpen     },
-  { id: 'journal',    label: 'Journal',    Icon: CalendarDays },
-  { id: 'challenges', label: 'Challenges', Icon: Trophy       },
-  { id: 'loyalty',    label: 'Loyalty',    Icon: Stamp        },
 ]
 
 // ─── Stat card ────────────────────────────────────────────────────────────────
