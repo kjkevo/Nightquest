@@ -124,7 +124,7 @@ function NightCard({ night, onDelete }) {
 }
 
 // ─── RECAP TAB ────────────────────────────────────────────────────────────────
-function RecapTab({ liveRecap, stats, onSave }) {
+function RecapTab({ liveRecap, stats, onSave, nights }) {
   const [saved, setSaved] = useState(false)
 
   const handleSave = () => {
@@ -132,6 +132,11 @@ function RecapTab({ liveRecap, stats, onSave }) {
     setSaved(true)
     setTimeout(() => setSaved(false), 3000)
   }
+
+  // Calculate averages
+  const avgXP = stats.totalNights > 0 ? Math.round(stats.totalXP / stats.totalNights) : 0
+  const avgQuests = stats.totalNights > 0 ? Math.round(stats.totalQuests / stats.totalNights) : 0
+  const avgVenues = stats.totalNights > 0 ? (stats.totalVenues / stats.totalNights).toFixed(1) : 0
 
   return (
     <div className="space-y-4">
@@ -172,17 +177,61 @@ function RecapTab({ liveRecap, stats, onSave }) {
         </button>
       </div>
 
-      {/* Career stats */}
+      {/* All-Time Summary */}
       <div>
-        <p className="font-display text-[10px] uppercase tracking-widest text-gray-600 mb-2">All-Time Stats</p>
-        <div className="grid grid-cols-3 gap-2">
-          <StatCard icon={CalendarDays} label="Nights"    value={stats.totalNights}  color="text-purple-400" />
-          <StatCard icon={Star}         label="Total XP"  value={stats.totalXP.toLocaleString()} />
-          <StatCard icon={Map}          label="Venues"    value={stats.totalVenues}   color="text-blue-400" />
-          <StatCard icon={Flame}        label="Miles"     value={stats.totalMiles.toFixed(1)} color="text-orange-400" />
-          <StatCard icon={Crown}        label="Legendary" value={stats.legendaryNights} color="text-orange-400" />
-          <StatCard icon={Trophy}       label="Quests"    value={stats.totalQuests}   color="text-green-400" />
+        <p className="font-display text-[10px] uppercase tracking-widest text-gray-600 mb-2">All-Time Summary</p>
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          <StatCard icon={CalendarDays} label="Total Nights"  value={stats.totalNights}  color="text-purple-400" />
+          <StatCard icon={Star}          label="Avg XP/Night" value={avgXP} color="text-quest-gold" />
+          <StatCard icon={Trophy}        label="Avg Quests"   value={avgQuests} color="text-green-400" />
         </div>
+      </div>
+
+      {/* Mission Completions Overview */}
+      <div>
+        <p className="font-display text-[10px] uppercase tracking-widest text-gray-600 mb-2">Mission Completions</p>
+        {nights && nights.length > 0 ? (
+          <div className="space-y-2">
+            {[...nights].reverse().map((night) => (
+              <div key={night.id} className="bg-quest-panel border border-quest-border rounded-xl p-3 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-display text-xs font-bold text-gray-200">{night.date}</p>
+                    <p className="font-body text-[10px] text-gray-500">{timeAgo(night.savedAt)}</p>
+                  </div>
+                  <span className={`font-display text-xs font-bold ${MOOD_COLORS[night.mood] || 'text-gray-400'}`}>
+                    {MOOD_LABELS[night.mood] || night.mood}
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
+                  <div className="bg-quest-bg rounded-lg px-2 py-1.5">
+                    <p className="font-display font-black text-quest-gold">{night.xpEarned}</p>
+                    <p className="font-body text-gray-600 text-[9px]">XP Earned</p>
+                  </div>
+                  <div className="bg-quest-bg rounded-lg px-2 py-1.5">
+                    <p className="font-display font-black text-green-400">{night.questsCompleted}</p>
+                    <p className="font-body text-gray-600 text-[9px]">Quests</p>
+                  </div>
+                  <div className="bg-quest-bg rounded-lg px-2 py-1.5">
+                    <p className="font-display font-black text-blue-400">{night.venues?.length || 0}</p>
+                    <p className="font-body text-gray-600 text-[9px]">Venues</p>
+                  </div>
+                </div>
+                {night.venues?.length > 0 && (
+                  <p className="font-body text-[10px] text-gray-500">
+                    {night.venues.join(' → ')}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <BookOpen size={24} className="text-gray-800 mx-auto mb-2" />
+            <p className="font-display text-xs uppercase tracking-wider text-gray-700">No missions completed yet</p>
+            <p className="font-body text-[10px] text-gray-800 mt-1">Complete a quest to see your stats here</p>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -464,7 +513,7 @@ export default function NightsHub({ loyalty }) {
       <div className="text-center">
         <h2 className="font-display text-lg font-black text-shimmer">Nights</h2>
         <p className="font-body text-[10px] text-gray-700 uppercase tracking-widest mt-0.5">
-          Journal · Challenges · Loyalty
+          Overview
         </p>
       </div>
 
@@ -487,7 +536,7 @@ export default function NightsHub({ loyalty }) {
 
       {/* Tab content */}
       {subTab === 'recap' && (
-        <RecapTab liveRecap={liveRecap} stats={stats} onSave={saveNight} />
+        <RecapTab liveRecap={liveRecap} stats={stats} onSave={saveNight} nights={nights} />
       )}
       {subTab === 'journal' && (
         <JournalTab bySemester={bySemester} onDelete={deleteNight} onClear={clearAll} />
