@@ -543,7 +543,7 @@ export default function QuestMode({ onComplete, totalXP }) {
 
   const handleDiffPick = (d) => {
     const picked = pickFreshSet(outing, d)
-    setSession({ step: 'timer', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [] })
+    setSession({ step: 'timer', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [], timerEnabled: false, timerStartTime: null })
   }
 
   const handleTimerEnable = () => {
@@ -576,6 +576,8 @@ export default function QuestMode({ onComplete, totalXP }) {
       tasks: fresh,
       sessionXP: 0,
       completedIds: [],
+      timerEnabled: false,
+      timerStartTime: null,
     }))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [outing, difficulty, setSession])
