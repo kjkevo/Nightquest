@@ -29,56 +29,56 @@ export const SOLO_QUESTS = {
       { id:'b_e04', title:'Icebreaker',             desc:'Strike up a conversation with a stranger at the bar and keep it going for at least 2 minutes.',                    tip:'Ask about their drink — everyone has an opinion.',                    xp:60  },
       { id:'b_e05', title:'Name Game',              desc:'Learn the first name of the bartender serving you.',                                                                tip:'Use their name when you order next — they\'ll notice.',               xp:45  },
       { id:'b_e06', title:'Common Ground',          desc:'Find out one thing you and a stranger have in common.',                                                             tip:'Start broad — city, music, sports — then go deeper.',                 xp:55  },
-      { id:'b_e07', title:'Squad Intro',            desc:'Introduce two people in your group who haven\'t formally met.',                                                     tip:'Give each person a one-line intro so they have something to work with.',xp:50  },
+
       { id:'b_e08', title:'Table Talk',             desc:'Ask someone at a nearby table where they\'re from.',                                                                tip:'Follow up with "what brought you here tonight?"',                    xp:50  },
-      { id:'b_e09', title:'Wingman',                desc:'Help a friend start a conversation with someone they\'ve been eyeing.',                                             tip:'A warm intro is all they need — do the first 10 seconds.',            xp:60  },
+
       { id:'b_e10', title:'Local Legend',           desc:'Ask a stranger what the best kept secret in this city is.',                                                         tip:'Frame it as "something most tourists never find."',                   xp:55  },
       { id:'b_e11', title:'Menu Detective',         desc:'Find the most unusual item on the drink menu and ask the bartender about it.',                                      tip:'The weirder the name, the better the story behind it.',               xp:45  },
-      { id:'b_e12', title:'Hidden Gem',             desc:'Find a spot in the bar most people aren\'t using and claim it for your squad.',                                     tip:'Check the back corners, outdoor areas, or upper levels.',             xp:50  },
+
       { id:'b_e13', title:'Staff Shoutout',         desc:'Learn the name of someone on staff other than your bartender.',                                                     tip:'The host, barback, or server — they\'re often overlooked.',           xp:50  },
       { id:'b_e14', title:'Photo Op',               desc:'Find the best photo spot in the venue and take a group pic there.',                                                 tip:'Look for neon signs, interesting walls, or good lighting.',           xp:45  },
-      { id:'b_e15', title:'Bathroom Recon',         desc:'Report back to the group on the bathroom situation — line length, vibe, and cleanliness.',                          tip:'This info is more valuable than people admit.',                       xp:40  },
+
       { id:'b_e16', title:'Venue History',          desc:'Ask a staff member how long this bar has been open.',                                                               tip:'Follow up with "what\'s changed the most since then?"',              xp:55  },
       { id:'b_e17', title:'Specials Scout',         desc:'Find out what tonight\'s drink specials are and report back to the group.',                                         tip:'Ask the bartender or check the chalkboard.',                          xp:45  },
-      { id:'b_e18', title:'Back Bar Scan',          desc:'Identify the most expensive bottle on the back bar and tell your squad what it is.',                                tip:'Look for the dusty bottles on the top shelf.',                        xp:50  },
+
       { id:'b_e19', title:'DJ Request',             desc:'Successfully request a song from the DJ or bartender controlling the music.',                                       tip:'Go up during a transition and keep the request simple.',              xp:55  },
       { id:'b_e20', title:'Merch Check',            desc:'Find out if the bar sells any merch or has a loyalty program.',                                                     tip:'Ask the bartender — not everything is advertised.',                   xp:40  },
       { id:'b_e21', title:'New Order',              desc:'Order something you\'ve never tried before.',                                                                       tip:'Ask the bartender what they\'d recommend from the thing you point at.',xp:50  },
       { id:'b_e22', title:'Local Brew',             desc:'Order a beer or drink that is local to the city you\'re in.',                                                       tip:'Ask what\'s made nearby — most bars carry at least one.',             xp:50  },
       { id:'b_e23', title:'Shot Roulette',          desc:'Let the bartender pick your next shot for under $8.',                                                               tip:'Give them one rule only: no Malört.',                                 xp:55  },
       { id:'b_e24', title:'Non-Drinker Friendly',   desc:'Find the best mocktail or non-alcoholic option on the menu.',                                                       tip:'Ask the bartender what they\'d recommend to someone not drinking.',    xp:45  },
-      { id:'b_e25', title:'Round Leader',           desc:'Organize and pay for a round for your whole squad.',                                                                tip:'Collect orders first — don\'t guess.',                                xp:50  },
-      { id:'b_e26', title:'Drink Double',           desc:'Order the same drink as someone else in your group at the exact same time.',                                        tip:'Make eye contact, count to three, order together.',                   xp:55  },
+
+
       { id:'b_e27', title:'Happy Hour Hero',        desc:'Order something specifically because it\'s on the happy hour menu.',                                                tip:'If happy hour is over, this one\'s on standby.',                     xp:45  },
       { id:'b_e28', title:'Bartender\'s Pick',      desc:'Tell the bartender your vibe and let them make you something completely off-menu.',                                 tip:'Say a mood or flavor, not a specific drink.',                         xp:60  },
       { id:'b_e29', title:'Classic Order',          desc:'Order a classic cocktail — old fashioned, negroni, margarita, etc. — that you\'ve never had before.',              tip:'Ask the bartender which they make best.',                             xp:45  },
-      { id:'b_e30', title:'Water Round',            desc:'Order a round of waters for your squad without anyone asking for it.',                                              tip:'Hydration is the move no one makes but everyone needs.',              xp:40  },
-      { id:'b_e31', title:'Squad Sync',             desc:'Get every member of your group in the same spot at the same time for 5 full minutes.',                              tip:'Group chat or send one person to round everyone up.',                 xp:50  },
-      { id:'b_e32', title:'Group Toast',            desc:'Lead a toast with a real, specific reason behind it — not just "cheers."',                                          tip:'Name someone, reference a moment, make it personal.',                 xp:45  },
-      { id:'b_e33', title:'Memory Lane',            desc:'Get your whole squad to each share one funny memory from the past month.',                                           tip:'Go first — make yours embarrassing enough to set the tone.',          xp:55  },
-      { id:'b_e34', title:'Group Photo Streak',     desc:'Take 3 photos with 3 different group configurations in this one venue.',                                            tip:'Change the grouping, not just the location.',                         xp:50  },
-      { id:'b_e35', title:'Unanimous Vote',         desc:'Get the whole group to unanimously agree on the next venue with zero complaints.',                                  tip:'Suggest 3 options, not 1 — easier to build consensus.',              xp:55  },
-      { id:'b_e36', title:'Playlist Pitch',         desc:'Get your squad to agree on one song that perfectly represents tonight.',                                             tip:'Pitch it like a campaign — make a case.',                            xp:50  },
-      { id:'b_e37', title:'Countdown Sync',         desc:'Get your whole group to cheers at the exact same second — not a moment off.',                                       tip:'One person counts down from 3 out loud.',                            xp:45  },
-      { id:'b_e38', title:'Squad Check-in',         desc:'Make sure every person in your group has a drink in hand at the same time.',                                        tip:'Do a lap and check on the stragglers.',                               xp:40  },
-      { id:'b_e39', title:'Night Historian',        desc:'Designate someone in the group to capture one photo per hour for the rest of the night.',                           tip:'Pick whoever has the best camera app, not just phone.',               xp:50  },
-      { id:'b_e40', title:'Exit Strategist',        desc:'Be the one who successfully rallies the whole group to leave for the next spot.',                                   tip:'Announce a time 10 minutes before you actually want to leave.',       xp:55  },
+
+
+
+
+
+
+
+
+
+
+
       { id:'b_e41', title:'Bar Trivia Solo',        desc:'Answer a trivia question correctly if the bar has trivia going on tonight.',                                        tip:'If there\'s no trivia, challenge your squad to a question instead.',  xp:55  },
       { id:'b_e42', title:'Napkin Note',            desc:'Write something funny or kind on a napkin and leave it somewhere in the bar.',                                      tip:'Leave it on a table, under a glass, or hand it to a stranger.',      xp:50  },
-      { id:'b_e43', title:'Jukebox Judge',          desc:'Rate every song that plays for 10 minutes out of 10 — announce each score to your group.',                          tip:'Be decisive. A 6 is not a 7.',                                       xp:45  },
+
       { id:'b_e44', title:'Overheard Gold',         desc:'Share the funniest thing you overhear from a stranger\'s conversation — no context allowed.',                      tip:'Just the sentence. Let the group figure out what it means.',          xp:50  },
       { id:'b_e45', title:'Worst Joke',             desc:'Tell the bartender your absolute worst joke and see if they laugh.',                                                tip:'Commit to it. Delivery is everything.',                               xp:45  },
       { id:'b_e46', title:'Air Guitar',             desc:'Do a full 10-second air guitar solo when a good song comes on.',                                                    tip:'Closed eyes = extra points from the crowd.',                         xp:50  },
       { id:'b_e47', title:'Price Guesser',          desc:'Guess the price of a drink before you order it — you win if you\'re within $1.',                                   tip:'Look at what the people around you ordered to calibrate.',            xp:45  },
       { id:'b_e48', title:'Bar Bingo',              desc:'Spot someone wearing all black, someone celebrating a birthday, and someone on a date — all in one night.',         tip:'The birthday one is usually the easiest.',                            xp:55  },
-      { id:'b_e49', title:'Signature Move',         desc:'Teach someone in your group a secret handshake or signature move before leaving the venue.',                        tip:'Simple enough to remember after a few drinks.',                       xp:50  },
-      { id:'b_e50', title:'Last Call Legend',       desc:'Be the last person in your group to finish their drink — without rushing at the end.',                             tip:'Pace yourself from the start. This is a long game.',                  xp:60  },
+
+
     ],
     medium: [
       // ── Social ──────────────────────────────────────────────────────────────
       { id:'b_m01', title:'Social Butterfly',       desc:'Have a conversation with someone at the bar, at a table, and on the dance floor all in one night.',                tip:'Move early — don\'t wait until the bar is packed.',                   xp:75  },
       { id:'b_m02', title:'The Interview',           desc:'Ask a stranger 5 genuine questions about their life in one conversation.',                                         tip:'Let each answer lead to the next question naturally.',                xp:80  },
-      { id:'b_m03', title:'Cross-Squad Connect',     desc:'Get your group and another group of strangers to hang out together for at least 10 minutes.',                      tip:'Start by standing near them — proximity does the work.',              xp:75  },
+
       { id:'b_m04', title:'Bar Philosopher',         desc:'Get a stranger to share their unpopular opinion on something and debate it respectfully.',                         tip:'Share yours first to lower their guard.',                             xp:80  },
       { id:'b_m05', title:'Reunion Act',             desc:'Greet someone you\'ve never met before like you\'re old friends and keep the bit going for 2 minutes.',            tip:'Confidence and specificity sell the illusion.',                       xp:85  },
       { id:'b_m06', title:'Human Bingo',             desc:'Find someone who is celebrating a birthday, someone visiting from out of town, and someone on a first date.',      tip:'Birthdays are easiest — look for sashes or groups singing.',          xp:80  },
@@ -100,36 +100,36 @@ export const SOLO_QUESTS = {
       // ── Drinks ──────────────────────────────────────────────────────────────
       { id:'b_m21', title:'Blind Order',             desc:'Order a drink by only describing the vibe you want — no specific ingredients or names.',                           tip:'"Something that feels like a rooftop at sunset" actually works.',    xp:75  },
       { id:'b_m22', title:'Full Flight',             desc:'Order a flight of any kind — beer, whiskey, tequila — and finish the whole thing.',                               tip:'Space them out — don\'t race through.',                               xp:80  },
-      { id:'b_m23', title:'Reverse Happy Hour',      desc:'Order the most expensive drink on the menu and justify why it\'s worth it to your group.',                         tip:'Know what\'s in it before you pitch.',                                xp:75  },
-      { id:'b_m24', title:'Speed Round',             desc:'Get your entire group\'s drink order in under 60 seconds at the bar.',                                             tip:'Assign one person to collect all orders before approaching.',         xp:80  },
+
+
       { id:'b_m25', title:'Ingredient Challenge',    desc:'Ask the bartender to make something using 3 random ingredients you name.',                                          tip:'Pick at least one ingredient that makes sense.',                      xp:85  },
       { id:'b_m26', title:'Two-Bar Tab',             desc:'Open and close a tab at two different venues in one night.',                                                        tip:'Plan the second bar early — don\'t wait until last call.',            xp:75  },
-      { id:'b_m27', title:'Drink Swap',              desc:'Trade drinks with someone in your squad without knowing what you\'re getting.',                                     tip:'Set a "no questions asked" rule before swapping.',                    xp:80  },
+
       { id:'b_m28', title:'Mystery Shot',            desc:'Get the bartender to pour you a mystery shot for under $6 and finish it without asking what it was.',               tip:'Trust the pour — the anxiety is half the fun.',                       xp:85  },
       { id:'b_m29', title:'Mocktail Master',         desc:'Order a mocktail that actually sounds delicious and convince a friend to try it.',                                  tip:'Describe it by flavor and vibe, not by what\'s missing.',             xp:75  },
-      { id:'b_m30', title:'Last Call Order',         desc:'Successfully get a drink order in during last call for your whole group.',                                           tip:'Post someone near the bar 15 minutes before closing time.',           xp:80  },
+
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'b_m31', title:'Group Costume',           desc:'Get your entire squad to agree on a theme and find one item each that fits it before the night ends.',              tip:'The looser the theme, the easier the buy-in.',                        xp:85  },
-      { id:'b_m32', title:'Bar Crawl Architect',     desc:'Plan and execute visiting 3 different venues in one night with full squad attendance.',                             tip:'Scout the next spot before you leave the current one.',               xp:80  },
-      { id:'b_m33', title:'Squad Trivia',            desc:'Host a 5-question trivia round for your group using things you learned tonight.',                                   tip:'Collect interesting facts throughout the night so you\'re ready.',   xp:75  },
-      { id:'b_m34', title:'Group Dare Wheel',        desc:'Every person in the squad completes one dare voted on by the rest of the group.',                                   tip:'The dare proposer goes first to set the tone.',                       xp:80  },
-      { id:'b_m35', title:'Synchronized Order',      desc:'Get your whole group to order the exact same drink at the exact same time.',                                        tip:'Agree on the drink before approaching the bar.',                      xp:85  },
-      { id:'b_m36', title:'Night Recap Live',        desc:'Give a live play-by-play recap of the night so far to your group like a sports commentator.',                       tip:'Use names and timestamps — specificity gets the laughs.',             xp:75  },
+
+
+
+
+
+
       { id:'b_m37', title:'The Switcheroo',          desc:'Swap seats or spots with another group in the bar and get both groups to be fine with it.',                         tip:'Be light about it — make it a game, not a negotiation.',              xp:80  },
-      { id:'b_m38', title:'Squad Vote Unanimous',    desc:'Get the entire group to agree on one song that defines the squad tonight, then request it.',                        tip:'Frame it as a legacy decision — this is the squad anthem.',           xp:85  },
-      { id:'b_m39', title:'Group Compliment Circle', desc:'Every person in the group gives every other person a genuine compliment.',                                          tip:'Go around in order — no skipping, no short ones.',                    xp:75  },
+
+
       { id:'b_m40', title:'Photo Essay',             desc:'Take 10 photos throughout the night that tell a complete story of the evening.',                                     tip:'Think arc: arrival, peak moment, late night chaos, wind-down.',       xp:80  },
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'b_m41', title:'Dance Floor Pioneer',     desc:'Be the first person on the dance floor when it\'s empty and stay for a full song.',                                 tip:'The second person always shows up faster than you think.',            xp:80  },
       { id:'b_m42', title:'Karaoke Cold Open',       desc:'Sing a karaoke song with zero preparation if the venue has karaoke.',                                               tip:'Pick something everyone knows — you\'ll get backup singers.',         xp:85  },
-      { id:'b_m43', title:'Prop Comic',              desc:'Use only bar items — napkin, straw, coaster — to perform a 30-second bit for your group.',                         tip:'Commit fully. Half-commitment is the only way to fail.',              xp:75  },
+
       { id:'b_m44', title:'Accent Challenge',        desc:'Hold an accent for an entire conversation with a stranger without breaking.',                                        tip:'Pick an accent you can sustain, not the funniest one.',               xp:80  },
       { id:'b_m45', title:'Bar Olympics Judge',      desc:'Rate every person who walks through the door for 5 minutes on a completely made-up scoring system.',                tip:'Announce your criteria before scoring starts.',                       xp:75  },
-      { id:'b_m46', title:'The Disappearing Act',    desc:'Slip away from your group without anyone noticing for 5 full minutes, then reappear.',                              tip:'Leave during a distraction. Reappear from a different direction.',    xp:80  },
-      { id:'b_m47', title:'Commercial Break',        desc:'Perform a fake 30-second commercial for the bar you\'re currently in to your squad.',                               tip:'Name a fake price and a fake tagline. Sell it.',                      xp:85  },
-      { id:'b_m48', title:'Nickname Master',         desc:'Give every person in your group a nickname based on something that happened tonight and make it stick.',             tip:'Announce it publicly — group consensus makes it official.',           xp:75  },
+
+
+
       { id:'b_m49', title:'Plot Twist',              desc:'Convince a stranger of a completely fake but believable fact about yourself for 5 minutes.',                        tip:'Stay close to the truth — lies with details land better.',            xp:80  },
-      { id:'b_m50', title:'Bar Critic',              desc:'Write and perform a full Yelp-style review of the bar out loud to your squad before leaving.',                      tip:'Include atmosphere, drinks, staff, and one unsolicited suggestion.',  xp:85  },
+
     ],
     hard: [
       // ── Social ──────────────────────────────────────────────────────────────
@@ -144,7 +144,7 @@ export const SOLO_QUESTS = {
       { id:'b_h09', title:'Group Merger',            desc:'Combine your squad with another squad and have both groups go to the next venue together.',                          tip:'Get one champion from the other group to rally their side.',          xp:130 },
       { id:'b_h10', title:'The Matchmaker',          desc:'Successfully introduce two single people who end up talking for at least 15 minutes on their own.',                 tip:'Exit the conversation once they\'re off and running.',                xp:120 },
       // ── Staff & Venue ────────────────────────────────────────────────────────
-      { id:'b_h11', title:'Staff Appreciation',      desc:'Get every member of your group to write a genuine compliment about the staff on a napkin and deliver it.',          tip:'Present them all at once — the group delivery hits different.',        xp:120 },
+
       { id:'b_h12', title:'Behind the Scenes',       desc:'Get a staff member to show you or describe something about the bar most customers never see.',                       tip:'Ask what goes on before opening or after closing.',                   xp:125 },
       { id:'b_h13', title:'Bar Takeover Moment',     desc:'Get the bartender to let you or a friend shake or pour one drink under supervision.',                               tip:'Frame it as "I\'ve always wanted to learn" — not "let me do your job."', xp:130 },
       { id:'b_h14', title:'Venue Champion',          desc:'Leave a detailed, genuine 5-star review of the bar on Google or Yelp while still inside it.',                       tip:'Mention specific drinks, staff names, and the vibe.',                 xp:115 },
@@ -166,16 +166,16 @@ export const SOLO_QUESTS = {
       { id:'b_h29', title:'Budget Master',           desc:'Track every dollar your group spends across the whole night and land within $5 of a budget you set at the start.',  tip:'Set the budget before the first order, not halfway through.',         xp:130 },
       { id:'b_h30', title:'First Pour Finish',       desc:'Finish your first drink before anyone else in your group finishes theirs — without rushing or spilling.',            tip:'Steady pace from the first sip. Don\'t start fast.',                 xp:115 },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'b_h31', title:'Full Night Filmmaker',    desc:'Create a 60-second video recap of the entire night using only clips taken throughout.',                              tip:'Designate a director early — don\'t assemble it at 2am from nothing.', xp:125 },
-      { id:'b_h32', title:'Bar Crawl Captain',       desc:'Organize a 4-venue crawl with a theme, a dress code element, and a challenge at each stop.',                        tip:'Set the theme before the first bar, not after.',                      xp:130 },
-      { id:'b_h33', title:'Squad Talent Show',       desc:'Every person in your group performs a 20-second talent for strangers at the bar.',                                   tip:'Go last if you want the loudest reaction.',                           xp:120 },
-      { id:'b_h34', title:'Group Negotiation',       desc:'Get your entire squad a perk — reserved spot, skipped line, free item — through collective charm.',                 tip:'One person leads the ask, everyone else signals agreement.',          xp:125 },
-      { id:'b_h35', title:'Night Yearbook',          desc:'Collect the name and one memorable quote from every person your group talks to all night.',                          tip:'Write them down immediately — memory is unreliable after midnight.',  xp:120 },
-      { id:'b_h36', title:'Scavenger Hunt Finish',   desc:'Complete a 10-item scavenger hunt across the venue without getting kicked out.',                                     tip:'Create the list before you start and assign items to different people.', xp:130 },
-      { id:'b_h37', title:'Squad Documentary',       desc:'Interview every member of your group on camera about the night as if it\'s a real documentary.',                     tip:'"How would you describe tonight in one word?" always lands.',          xp:125 },
-      { id:'b_h38', title:'Full Group Challenge',    desc:'Every single person in your group completes a different task from this list in the same night.',                     tip:'Assign tasks at the start — don\'t leave it to chance.',              xp:120 },
-      { id:'b_h39', title:'The Handoff',             desc:'Pass a made-up story between every person in your group like telephone, then perform the final version to strangers.', tip:'The first person sets the tone — make it weird.',                  xp:115 },
-      { id:'b_h40', title:'All-Night Streak',        desc:'Have at least one person from your squad on the dance floor at all times from 11pm to close.',                      tip:'Set a rotation schedule and keep each other accountable.',            xp:130 },
+
+
+
+
+
+
+
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'b_h41', title:'Stand-Up Set',            desc:'Perform a 2-minute stand-up comedy set to strangers at the bar who didn\'t ask for it.',                            tip:'Self-deprecating openers disarm the crowd fastest.',                  xp:125 },
       { id:'b_h42', title:'Bar Choir',               desc:'Get 5 or more strangers to sing along to a song at the same time.',                                                  tip:'Pick an anthem everyone knows — start loud and let it spread.',       xp:120 },
@@ -196,7 +196,7 @@ export const SOLO_QUESTS = {
       // ── Dance Floor ──────────────────────────────────────────────────────────
       { id:'c_e01', title:'First Mover',           desc:'Be the first person from your squad to step onto the dance floor.',                                                  tip:'Don\'t wait for the floor to fill up — be the reason it does.',       xp:45  },
       { id:'c_e02', title:'Song Surrender',        desc:'Dance to a song you normally wouldn\'t and actually commit to it.',                                                  tip:'Full commitment — no half-measures, no ironic distance.',             xp:40  },
-      { id:'c_e03', title:'Circle Up',             desc:'Get your whole squad into a dance circle for at least one full song.',                                               tip:'One person jumps in the center first — the rest follow.',             xp:50  },
+
       { id:'c_e04', title:'Hype Person',           desc:'Spend an entire song hyping up everyone around you instead of dancing yourself.',                                    tip:'Clap, point, cheer — make people feel seen.',                        xp:45  },
       { id:'c_e05', title:'Floor Scout',           desc:'Find the best spot on the dance floor with the most space and claim it for your squad.',                             tip:'Check the sides and back corners first.',                             xp:40  },
       { id:'c_e06', title:'Crowd Surf the Beat',   desc:'Navigate from one side of the dance floor to the other without stopping dancing.',                                   tip:'Keep moving — pausing breaks the challenge.',                         xp:50  },
@@ -208,7 +208,7 @@ export const SOLO_QUESTS = {
       { id:'c_e11', title:'Booth Neighbors',       desc:'Introduce yourself to the group in the booth or section next to yours.',                                             tip:'A genuine compliment about their energy is all you need.',            xp:50  },
       { id:'c_e12', title:'Compliment Drop',       desc:'Give a genuine compliment to a stranger about their dancing and walk away.',                                          tip:'Specific beats generic every time.',                                  xp:45  },
       { id:'c_e13', title:'Fit Check',             desc:'Ask a stranger where they got one item they\'re wearing.',                                                            tip:'Make it specific — "those shoes" not "your outfit."',                xp:50  },
-      { id:'c_e14', title:'Squad Roll Call',       desc:'Get a head count of your entire group without using your phone.',                                                     tip:'Do a lap — don\'t just stand and shout.',                            xp:40  },
+
       { id:'c_e15', title:'VIP Spotter',           desc:'Find out if anyone famous or notable is in the club tonight.',                                                        tip:'Ask a promoter or someone near the VIP section.',                     xp:55  },
       { id:'c_e16', title:'Name Drop',             desc:'Learn the name of the person next to you on the dance floor.',                                                        tip:'Introduce yourself first — names follow naturally.',                  xp:45  },
       { id:'c_e17', title:'Promoter Chat',         desc:'Find the club promoter and have a 2-minute conversation with them.',                                                  tip:'Ask how they got into it — they love that question.',                 xp:50  },
@@ -227,16 +227,16 @@ export const SOLO_QUESTS = {
       { id:'c_e29', title:'Lighting Show',         desc:'Find the spot where the light show looks the most impressive and point it out to your group.',                        tip:'Usually from slightly elevated ground or the middle of the floor.',   xp:45  },
       { id:'c_e30', title:'Club Map',              desc:'Successfully navigate to every section of the club — bar, floor, lounge, bathroom — in under 10 minutes.',           tip:'Do it early before the crowd gets thick.',                            xp:50  },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'c_e31', title:'Squad Sync',            desc:'Get every person in your group dancing at the same time for one full song.',                                          tip:'Round everyone up before the song starts, not during.',               xp:45  },
-      { id:'c_e32', title:'Drink Up',              desc:'Make sure every person in your squad has a drink before the night really starts.',                                    tip:'Do a lap to check — don\'t just assume.',                            xp:40  },
-      { id:'c_e33', title:'Lost and Found',        desc:'Locate every member of your squad using only the dance floor, no calling or texting.',                               tip:'Check the bar, the bathroom line, and near the DJ booth first.',      xp:50  },
-      { id:'c_e34', title:'Group Reaction',        desc:'Get your whole squad to react visibly when the drop hits at the same time.',                                           tip:'Signal your squad 10 seconds before — they need the warning.',        xp:45  },
-      { id:'c_e35', title:'Designated Photographer',desc:'Take 10 photos of your squad throughout the night without being asked.',                                             tip:'Capture candid moments, not just posed ones.',                        xp:40  },
-      { id:'c_e36', title:'Entry Time',            desc:'Be the first person from your squad through the door when you arrive.',                                               tip:'Stay at the front of the group from the line.',                       xp:45  },
-      { id:'c_e37', title:'Merch Vote',            desc:'Get every person in your squad to agree on the best outfit in the club tonight.',                                     tip:'Nominate 3 finalists and put it to a vote.',                          xp:50  },
-      { id:'c_e38', title:'Squad Hydration',       desc:'Get every person in your group a water at some point in the night.',                                                  tip:'Do it between songs when people are catching their breath.',           xp:40  },
-      { id:'c_e39', title:'Reunion Spot',          desc:'Designate a meeting point inside the club and successfully use it when the group splits.',                            tip:'Pick somewhere memorable — not just "near the bar."',                xp:45  },
-      { id:'c_e40', title:'Last One Dancing',      desc:'Be the last person from your squad still on the dance floor at any given point.',                                     tip:'Outlast everyone — this is about endurance, not skill.',              xp:55  },
+
+
+
+
+
+
+
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'c_e41', title:'Worst Dance Move',      desc:'Bust out your absolute worst dance move intentionally and fully commit.',                                              tip:'The worse the move, the higher the crowd reaction.',                  xp:50  },
       { id:'c_e42', title:'Request Attempt',       desc:'Try to request a song from the DJ booth — success or fail both count.',                                               tip:'Go during a transition and keep the request short.',                  xp:55  },
@@ -255,14 +255,14 @@ export const SOLO_QUESTS = {
       { id:'c_m02', title:'Genre Chameleon',        desc:'Successfully adapt your dancing style to 3 completely different genres played in one night.',                        tip:'Commit to each style — half-effort reads as bad dancing.',            xp:75  },
       { id:'c_m03', title:'Floor Leader',           desc:'Get at least 5 strangers following your dance moves at the same time.',                                              tip:'Pick a move that\'s easy to copy — complexity loses people.',         xp:80  },
       { id:'c_m04', title:'The Closer',             desc:'Be the very last person on the dance floor before it clears between sets.',                                          tip:'Watch for the crowd thinning and stay planted.',                      xp:85  },
-      { id:'c_m05', title:'Drop Choreographer',     desc:'Create a signature move with your squad that everyone does at the next drop.',                                       tip:'Keep it to 2–3 beats — anything longer won\'t sync.',                xp:80  },
+
       { id:'c_m06', title:'Center Stage',           desc:'Dance in the absolute center of the floor for one full song without moving to the edge.',                            tip:'Find center early in the song before the crowd closes in.',           xp:75  },
       { id:'c_m07', title:'Dance Teacher',          desc:'Teach a willing stranger a specific dance move and get them to land it.',                                             tip:'Pick something with a clear count — 1-2-3 moves teach fastest.',      xp:85  },
       { id:'c_m08', title:'Song Marathon',          desc:'Stay on the dance floor for 5 consecutive songs without leaving once.',                                               tip:'Hydrate before you start — 5 songs is longer than it sounds.',        xp:80  },
       { id:'c_m09', title:'Style Switch',           desc:'Get a stranger to completely change their dancing style based on your suggestion.',                                   tip:'Demo the style yourself first — show, don\'t just tell.',            xp:75  },
       { id:'c_m10', title:'Floor Diplomat',         desc:'Resolve a space dispute on the dance floor between two groups without any drama.',                                    tip:'Humor defuses tension better than logic.',                            xp:85  },
       // ── Social ──────────────────────────────────────────────────────────────
-      { id:'c_m11', title:'Squad Merger',           desc:'Get your group and a group of strangers to dance together for at least 15 minutes.',                                  tip:'Find one social person in their group and work from there.',          xp:80  },
+
       { id:'c_m12', title:'Hype Chain',             desc:'Start a hype reaction that travels through at least 5 different people near you.',                                    tip:'Make it physical — a motion spreads faster than a sound.',            xp:75  },
       { id:'c_m13', title:'Club Ambassador',        desc:'Convince someone who is standing on the sidelines to get on the dance floor.',                                        tip:'Invite, don\'t drag — and lead them out yourself.',                  xp:85  },
       { id:'c_m14', title:'VIP Visitor',            desc:'Get invited into or waved into a VIP section by someone already in it.',                                              tip:'Make a connection first — the invite follows naturally.',             xp:80  },
@@ -284,27 +284,27 @@ export const SOLO_QUESTS = {
       { id:'c_m29', title:'Security Trust',         desc:'Get a bouncer to nod at you in recognition the second time you walk past them.',                                       tip:'Be respectful the first time — that\'s what earns the nod.',          xp:75  },
       { id:'c_m30', title:'After-Party Intel',      desc:'Find out from staff or a promoter where the real after-party is happening tonight.',                                   tip:'Ask casually — don\'t make it sound like you\'re fishing.',           xp:85  },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'c_m31', title:'Synchronized Drop',      desc:'Get your entire squad to do the exact same move at the exact same drop in a song.',                                    tip:'Rehearse the move once before the drop — 10 seconds is enough.',      xp:80  },
-      { id:'c_m32', title:'Club Crawl Segment',     desc:'Successfully move your entire group from one club to another with zero people lost.',                                  tip:'Count heads at the exit before moving — not after.',                  xp:85  },
-      { id:'c_m33', title:'Squad Formation',        desc:'Get your group into a specific formation on the dance floor and hold it for 30 seconds.',                              tip:'Assign positions before you hit the floor.',                          xp:75  },
-      { id:'c_m34', title:'Group Blackout Photo',   desc:'Take one photo of your squad where every single person looks genuinely amazing.',                                      tip:'Take 10 — one of them will be the one.',                             xp:80  },
-      { id:'c_m35', title:'Theme Enforcement',      desc:'If your squad has a dress theme, get a stranger to correctly guess what it is.',                                       tip:'Give them 3 guesses before revealing.',                               xp:85  },
-      { id:'c_m36', title:'Squad Recruitment',      desc:'Add at least one new person to your group for the rest of the night with full squad approval.',                        tip:'Introduce them to everyone — integration is the goal.',               xp:80  },
+
+
+
+
+
+
       { id:'c_m37', title:'Night Timeline',         desc:'Reconstruct the exact timeline of everything your group did so far with correct times.',                               tip:'Work backwards from now — it\'s easier than forward.',               xp:75  },
-      { id:'c_m38', title:'Group Challenge Victory',desc:'Every person in your squad completes a different easy challenge in the same venue.',                                   tip:'Assign challenges at the start — don\'t let people overlap.',         xp:85  },
-      { id:'c_m39', title:'Coordinated Exit',       desc:'Get your entire group to leave a venue at the exact same time with zero stragglers.',                                  tip:'Set a hard time and send a 5-minute warning.',                        xp:80  },
-      { id:'c_m40', title:'Squad DJ Vote',          desc:'Get every person in your group to agree on one song they want to hear tonight, then request it.',                      tip:'Take a vote before approaching the DJ booth.',                        xp:75  },
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
-      { id:'c_m41', title:'Fake Music Video',       desc:'Film a 30-second fake music video with your squad to whatever song is playing.',                                       tip:'Assign roles: lead, background dancers, dramatic close-up.',          xp:85  },
-      { id:'c_m42', title:'Club Announcer',         desc:'Announce your squad\'s arrival to a section of the club like a hype man with a microphone.',                           tip:'Commit to the bit — half-energy doesn\'t land.',                     xp:80  },
+
+
       { id:'c_m43', title:'Interpretive Drop',      desc:'Do a dramatically over-the-top interpretive dance the moment the bass drops.',                                          tip:'The bigger the better — restraint defeats the purpose.',              xp:75  },
       { id:'c_m44', title:'Fashion Week',           desc:'Walk through the club like you\'re on a runway during a transition between songs.',                                     tip:'Eye forward, pace slow, expression serious.',                         xp:80  },
       { id:'c_m45', title:'DJ Critique',            desc:'Give a live expert-style breakdown of the DJ\'s set so far to your squad like you\'re on a podcast.',                  tip:'Use real terminology: transitions, mixing, energy arc.',              xp:85  },
       { id:'c_m46', title:'Invisible Crowd Surf',   desc:'Pretend to crowd surf in slow motion across the dance floor with your squad playing along.',                            tip:'Designate carriers ahead of time so it doesn\'t collapse.',           xp:75  },
       { id:'c_m47', title:'Club Sommelier',         desc:'Smell and describe a stranger\'s drink like a wine sommelier before guessing what it is.',                              tip:'Lead with "I\'m doing a challenge" — most people find it funny.',     xp:80  },
-      { id:'c_m48', title:'Reverse Selfie',         desc:'Get a stranger to take a selfie with your squad without your group asking for it.',                                     tip:'Make yourselves the most photogenic thing near them.',                xp:85  },
-      { id:'c_m49', title:'Slow Motion Moment',     desc:'Get your entire squad to walk into a new section in slow motion like an entrance scene.',                               tip:'Pick a moment when people will actually notice.',                     xp:75  },
-      { id:'c_m50', title:'Club Historian',         desc:'By the end of the night, write and perform a 60-second poem about everything that happened.',                           tip:'Start collecting material early — don\'t wait until 2am.',           xp:80  },
+
+
+
     ],
     hard: [
       // ── Dance Floor ──────────────────────────────────────────────────────────
@@ -341,16 +341,16 @@ export const SOLO_QUESTS = {
       { id:'c_h29', title:'Staff Send-Off',        desc:'Have at least 2 staff members personally say goodbye to you or your squad as you leave.',                               tip:'Make an impression early enough that they remember you at the end.',  xp:120 },
       { id:'c_h30', title:'Promoter Partnership',  desc:'Get a promoter to offer your squad a real deal for the next event they\'re running.',                                   tip:'Show genuine interest in their work before asking about deals.',      xp:125 },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'c_h31', title:'Full Club Night Film',  desc:'Produce a genuine 90-second mini documentary of your squad\'s entire night with narration.',                            tip:'Assign a dedicated filmmaker early — don\'t assemble clips at 2am.',  xp:130 },
-      { id:'c_h32', title:'Club Crawl Commander',  desc:'Lead your squad through 3 different clubs in one night with a specific challenge completed at each.',                   tip:'Set the challenges before the first club — adapt as needed.',         xp:125 },
-      { id:'c_h33', title:'Squad Performance',     desc:'Perform a coordinated 60-second group routine on the dance floor to a song you didn\'t plan for.',                      tip:'Agree on 4 signature moves as a squad before going out.',             xp:130 },
-      { id:'c_h34', title:'Full Group VIP',        desc:'Get your entire squad into VIP at the same time through social means alone.',                                            tip:'One strong connection is worth more than 10 casual ones.',            xp:125 },
-      { id:'c_h35', title:'Night Yearbook',        desc:'Collect names and one quote from 15 different people your squad interacted with tonight.',                               tip:'Write them down immediately — memory fades fast after midnight.',     xp:120 },
-      { id:'c_h36', title:'Group Reputation',      desc:'Be known as a specific squad by multiple strangers and staff by a name you chose at the start of the night.',           tip:'Introduce yourselves by squad name every time — consistency builds it.', xp:130 },
-      { id:'c_h37', title:'All-Night Presence',    desc:'Have at least 2 members of your squad on the dance floor at all times from 11pm to close.',                             tip:'Set up a rotation schedule and stick to it.',                         xp:125 },
-      { id:'c_h38', title:'Squad Expansion',       desc:'Double the size of your group by the end of the night through people who genuinely want to stay with you.',             tip:'Recruit one person at a time — groups are harder than individuals.',   xp:120 },
-      { id:'c_h39', title:'Synchronized Moment',   desc:'Get your entire expanded group — original squad plus new people — to do one coordinated thing at the same time.',       tip:'Pick something simple: arms up, a jump, a cheer on a specific beat.', xp:130 },
-      { id:'c_h40', title:'Club Royalty',          desc:'Complete 5 hard missions in a single night and get recognized by both staff and strangers before you leave.',            tip:'Track your completions — the recognition is earned, not assumed.',    xp:150 },
+
+
+
+
+
+
+
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'c_h41', title:'Fake Celebrity Entrance',desc:'Enter a new section of the club like you\'re a celebrity with your squad playing security and entourage.',             tip:'Slow pace, eye contact, zero hesitation — sell it completely.',       xp:125 },
       { id:'c_h42', title:'Undercover Critic',     desc:'Spend the night pretending to be a club reviewer for a magazine and stay in character with everyone you meet.',          tip:'Have a fake publication name ready — specificity makes it believable.',xp:120 },
@@ -382,7 +382,7 @@ export const SOLO_QUESTS = {
       // ── Social ──────────────────────────────────────────────────────────────
       { id:'r_e11', title:'Rave Neighbor',         desc:'Learn the name of the person standing next to you in the crowd.',                                                    tip:'Introduce yourself during a lull — not over a loud drop.',            xp:45  },
       { id:'r_e12', title:'Outfit Compliment',     desc:'Compliment a stranger\'s rave fit and find out where they got one piece of it.',                                      tip:'Be specific about what caught your eye.',                             xp:40  },
-      { id:'r_e13', title:'Squad Finder',          desc:'Successfully locate every member of your squad on the floor without calling or texting.',                             tip:'Check the bar, the rail, and near the speakers.',                     xp:50  },
+
       { id:'r_e14', title:'Totem Spotter',         desc:'Find a group using a totem or flag and get a photo near it.',                                                         tip:'Totems are usually in the back third of the crowd for visibility.',   xp:45  },
       { id:'r_e15', title:'Rave Family',           desc:'Find someone who came to this event completely alone and hang with them for at least one song.',                      tip:'Solos are usually near the edges — easy to spot once you look.',      xp:50  },
       { id:'r_e16', title:'Kandi Receiver',        desc:'Receive a piece of kandi from a stranger through a proper PLUR handshake.',                                           tip:'Offer yours first — kandi culture is always reciprocal.',             xp:55  },
@@ -402,16 +402,16 @@ export const SOLO_QUESTS = {
       { id:'r_e29', title:'Lost and Found',        desc:'Locate the lost and found station and report its position to the group.',                                              tip:'Usually near the main entrance or info tent.',                        xp:45  },
       { id:'r_e30', title:'Vendor Map',            desc:'Find the food and drink vendors and report back the best value option.',                                               tip:'Walk the full vendor row before committing to anything.',             xp:45  },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'r_e31', title:'Squad Beacon',          desc:'Designate one person as the group beacon using a light, flag, or raised item so no one gets lost.',                   tip:'Pick the tallest person and give them something visible.',             xp:45  },
-      { id:'r_e32', title:'Group Photo at Stage',  desc:'Get a full squad photo with the stage or DJ setup clearly visible in the background.',                                tip:'Raise your phone above the crowd for a clean shot.',                  xp:50  },
-      { id:'r_e33', title:'Matching Moment',       desc:'Find one item all squad members are wearing or holding and get a photo of just that item.',                            tip:'Even wristbands count — look for what everyone has in common.',       xp:45  },
-      { id:'r_e34', title:'Synchronized Jump',     desc:'Get your entire squad to jump at the exact same moment during a drop.',                                                tip:'Countdown from 3 before the drop — not on the drop itself.',          xp:50  },
-      { id:'r_e35', title:'Human Chain',           desc:'Hold hands or link arms as a full squad and navigate 20 feet through the crowd together.',                             tip:'Move with the crowd, not against it.',                                xp:45  },
-      { id:'r_e36', title:'Squad Timestamp',       desc:'Get a photo of your whole squad at the exact moment the headliner starts their set.',                                  tip:'Assign one person as photographer and have them ready.',              xp:40  },
-      { id:'r_e37', title:'Group Earplugs Check',  desc:'Make sure every person in your squad has ear protection before the main act starts.',                                  tip:'Foam plugs are sold at most venues near the entrance.',                xp:40  },
-      { id:'r_e38', title:'Meet-Up Test',          desc:'Split up intentionally then successfully reunite at a pre-agreed spot without calling.',                               tip:'Pick a landmark, not a section — landmarks don\'t move.',             xp:50  },
-      { id:'r_e39', title:'Water Round',           desc:'Make sure every person in your squad has water before the headliner set begins.',                                      tip:'Do a round 15 minutes before the set — don\'t wait until it starts.', xp:40  },
-      { id:'r_e40', title:'Squad Roll Call',       desc:'Account for every member of your group at three different points during the night.',                                   tip:'Set check-in times at the start so it\'s expected.',                  xp:45  },
+
+
+
+
+
+
+
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'r_e41', title:'Air Instrument',        desc:'Play a full air instrument solo during an instrumental break and fully commit.',                                       tip:'Air guitar, air keys, air drums — pick your weapon.',                 xp:45  },
       { id:'r_e42', title:'Lyric Test',            desc:'Sing along to a song loudly enough that a stranger next to you joins in.',                                             tip:'Pick a chorus everyone knows — that\'s your on-ramp.',               xp:50  },
@@ -460,24 +460,24 @@ export const SOLO_QUESTS = {
       { id:'r_m30', title:'Venue Architect',       desc:'Draw a rough but accurate map of the entire venue layout from memory after exploring it.',                               tip:'Do a full walk early — the map gets harder to build after midnight.', xp:85  },
       // ── Squad ────────────────────────────────────────────────────────────────
       { id:'r_m31', title:'Squad Setlist',         desc:'Get every person in your group to agree on their top 3 songs they want to hear, then track how many actually get played.', tip:'Settle debates before the set — not during.',                      xp:80  },
-      { id:'r_m32', title:'Group Mosh',            desc:'Get your entire squad into the mosh pit at the same time for at least 30 seconds.',                                      tip:'Enter together — splitting the entry is how squads get separated.',  xp:85  },
-      { id:'r_m33', title:'Totem Build',           desc:'Create an improvised totem or flag from items your squad has and use it to stay together.',                               tip:'Height and contrast matter more than design.',                        xp:80  },
-      { id:'r_m34', title:'Stage Migration',       desc:'Move your full squad between every stage at the venue at least once during the night.',                                   tip:'Use set change windows to move — never fight an active crowd.',       xp:75  },
-      { id:'r_m35', title:'Squad Formation Hold',  desc:'Hold a specific squad formation in a dense crowd for 3 consecutive songs without breaking.',                               tip:'Link arms or hold shoulders — physical connection holds formations.', xp:85  },
-      { id:'r_m36', title:'Group Kandi Exchange',  desc:'Have every person in your squad trade kandi with a different stranger in the same night.',                                 tip:'Split up to trade — then reunite and compare.',                       xp:80  },
+
+
+
+
+
       { id:'r_m37', title:'Night Soundtrack',      desc:'Collectively build a playlist of every song played that your squad recognized throughout the night.',                      tip:'One person logs songs per stage — combine at the end.',               xp:75  },
-      { id:'r_m38', title:'Group Front Push',      desc:'Get your entire squad to the front half of the floor for the headliner\'s peak moment.',                                  tip:'Start moving before the set begins — you can\'t push during a peak.', xp:85 },
-      { id:'r_m39', title:'Squad Documentary Segment',desc:'Film and narrate a 60-second documentary segment about your squad\'s experience at this specific event.',              tip:'Frame it as "day in the life" — react to what\'s happening around you.', xp:80 },
-      { id:'r_m40', title:'All-Night Crew',        desc:'Keep your complete squad together without a single person splitting off for an entire 2-hour set.',                        tip:'Set check-ins every 30 minutes — prevention beats reunification.',    xp:75  },
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
-      { id:'r_m41', title:'Rave Reporter',         desc:'Interview 5 strangers on camera about their experience at the event as if you\'re a real journalist.',                    tip:'Have one consistent question you ask everyone.',                      xp:80  },
-      { id:'r_m42', title:'Costume Contest',       desc:'Find the most elaborate costume or outfit at the event and get a photo with the person wearing it.',                       tip:'Compliment the detail — they spent time on it.',                      xp:85  },
+
+
       { id:'r_m43', title:'Fake Stage Crew',       desc:'Walk through the venue with a purpose like you\'re part of the production crew and see how far you get.',                 tip:'Carry something — purpose is conveyed through props.',                xp:80  },
-      { id:'r_m44', title:'Air Band Performance',  desc:'Perform a full synchronized air band set with your squad to one complete song.',                                           tip:'Assign instruments before the song starts — no overlapping air guitars.', xp:75 },
+
       { id:'r_m45', title:'Crowd Surfing Cheerleader',desc:'Successfully encourage and assist a willing person to crowd surf safely with security cooperation.',                   tip:'Make sure security sees it coming — their cooperation is the goal.',  xp:85  },
       { id:'r_m46', title:'Rave Translator',       desc:'Explain what is happening musically during a set to a first-time raver standing next to you in real time.',               tip:'Break it down simply — "this is the build, this is the drop."',       xp:80  },
       { id:'r_m47', title:'Set Review Podcast',    desc:'Record a genuine 2-minute podcast-style review of a set immediately after it ends with your squad.',                       tip:'Assign host and guests — structure makes it actually listenable.',     xp:75  },
-      { id:'r_m48', title:'Silent Disco Moment',   desc:'Get your squad to dance to completely different imaginary songs in a crowd for 2 minutes straight.',                        tip:'Everyone picks their song silently — no sharing until after.',         xp:85  },
+
       { id:'r_m49', title:'Rave Sommelier',        desc:'Describe the DJ\'s set using only wine review vocabulary to a willing stranger.',                                           tip:'"Notes of progressive trance with a crisp four-on-the-floor finish."', xp:80 },
       { id:'r_m50', title:'Energy Arc Chart',      desc:'Draw a hand-drawn graph of the crowd energy throughout one full set from memory immediately after it ends.',               tip:'X-axis is time, Y-axis is energy — include the peaks and valleys.',   xp:75  },
     ],
@@ -516,16 +516,16 @@ export const SOLO_QUESTS = {
       { id:'r_h29', title:'Crew Connection',       desc:'Build rapport with a production crew member who tells you something about the show no audience member would normally know.', tip:'Ask about their role specifically — crew members love being seen.', xp:130 },
       { id:'r_h30', title:'Event Journalist',      desc:'Produce a written or recorded review of the entire event comprehensive enough to publish, completed before you leave.',   tip:'Collect quotes and observations throughout — not just at the end.',   xp:125 },
       // ── Squad ────────────────────────────────────────────────────────────────
-      { id:'r_h31', title:'Full Night Together',   desc:'Keep your entire squad together without a single split for the complete duration of the headliner set.',                  tip:'Designate a shepherd whose only job is keeping the group intact.',    xp:130 },
-      { id:'r_h32', title:'Squad Front Row',       desc:'Get every member of your squad to the front barrier at the same time during the headliner.',                              tip:'Move as a unit — splitting the approach loses people.',               xp:125 },
-      { id:'r_h33', title:'Group Mosh Marathon',   desc:'Rotate every member of your squad through the mosh pit at least twice across the night.',                                 tip:'Track rotations — it\'s easy to miss someone.',                      xp:130 },
-      { id:'r_h34', title:'Synchronized Squad Moment',desc:'Choreograph and execute a 30-second coordinated group routine in the crowd during a live set.',                       tip:'Rehearse before you go in — not while you\'re already in the crowd.', xp:125 },
-      { id:'r_h35', title:'Squad Totem Parade',    desc:'Build a totem, get it recognized by at least 10 strangers, and keep it visible for the entire headliner set.',            tip:'Height and contrast matter more than design.',                        xp:120 },
-      { id:'r_h36', title:'Full Group Kandi Chain',desc:'Every person in your squad gives and receives kandi from a stranger in the same 30-minute window.',                       tip:'Split up to trade simultaneously — then reunite and compare.',        xp:130 },
-      { id:'r_h37', title:'Night Quest Sweep',     desc:'Complete at least one easy, one medium, and one hard mission as a full group in a single night.',                          tip:'Assign tiers at the start — coordinate so nothing overlaps.',         xp:125 },
-      { id:'r_h38', title:'Group Stage Sweep',     desc:'Have every member of your squad see every performing artist for at least one song across the whole event.',               tip:'Build a shared schedule — assign a point person per stage.',          xp:120 },
-      { id:'r_h39', title:'Squad Legacy',          desc:'Be remembered and pointed out by at least 5 strangers and 2 staff members by name or squad identity before you leave.',   tip:'Introduce yourselves by squad name everywhere you go.',               xp:130 },
-      { id:'r_h40', title:'Rave Dynasty',          desc:'Complete 5 hard missions as a full squad, document all of them, and have a stranger give a testimonial about your group on camera.', tip:'Assign a dedicated documentarian from the start.',           xp:150 },
+
+
+
+
+
+
+
+
+
+
       // ── Entertainment ────────────────────────────────────────────────────────
       { id:'r_h41', title:'Full Set Air DJ',       desc:'Perform a complete air DJ set mirroring the real DJ\'s movements for an entire 30-minute set in a visible spot.',        tip:'Match energy and timing — the crowd catches on faster than you think.', xp:125 },
       { id:'r_h42', title:'Undercover Journalist', desc:'Spend the entire night in character as a music journalist, conducting real interviews, and produce a finished article before midnight.', tip:'Have the publication name ready from the start.',            xp:130 },
@@ -620,7 +620,7 @@ export const SOLO_QUESTS = {
       { id:'o_m16', title:'Performer Network',      desc:'Exchange contact info with at least 3 other performers before the night ends.',                                         tip:'Give a reason for the exchange — shared interest in the craft works.', xp:80 },
       { id:'o_m17', title:'Post-Show Circle',       desc:'Organize an informal post-show debrief with at least 4 performers from the night.',                                    tip:'Pick a spot and invite performers as they come off stage.',           xp:75  },
       { id:'o_m18', title:'New Collaborator',       desc:'Find someone at the open mic and agree to create something together in the future.',                                    tip:'Propose something specific — "a piece" beats "we should collab."',   xp:85  },
-      { id:'o_m19', title:'Bring a Crowd',          desc:'Show up with at least 4 people who came specifically to support you and introduce them to the room.',                  tip:'Introduce your people to the host — it makes everyone more comfortable.', xp:80 },
+
       { id:'o_m20', title:'Community Builder',      desc:'Connect two performers who you think should know each other and explain why to both of them.',                          tip:'The explanation is the gift — generic introductions don\'t stick.',   xp:75  },
       // ── Craft & Writing ──────────────────────────────────────────────────────
       { id:'o_m21', title:'Written Same Night',     desc:'Write and perform a piece entirely at the venue that night before you go up.',                                          tip:'Give yourself a topic constraint — total freedom is the enemy of speed.', xp:85 },
@@ -652,7 +652,7 @@ export const SOLO_QUESTS = {
       { id:'o_m45', title:'Anti-Comedy Set',        desc:'Perform a set where the joke is that there is no joke, fully committed and deadpan the whole way.',                      tip:'The slower the delivery, the funnier it gets.',                       xp:85  },
       { id:'o_m46', title:'Fake Award Show',        desc:'Present fake awards to people in the audience with fully prepared speeches for each.',                                     tip:'Write the awards before you go up — improvised ones ramble.',         xp:75  },
       { id:'o_m47', title:'Speed Set',              desc:'Compress a full 5-minute set into exactly 60 seconds without losing any of the content.',                                 tip:'Cut every pause and transition — content only.',                      xp:80  },
-      { id:'o_m48', title:'Conducted Performance',  desc:'Have your squad conduct you like an orchestra from the audience, controlling your volume and speed with hand signals.',   tip:'Agree on the signals before you go up.',                              xp:85  },
+
       { id:'o_m49', title:'Audience Autopilot',     desc:'Let the audience make every decision about your set in real time by raising hands for options.',                           tip:'Have 3 prepared versions of each section — the audience picks.',      xp:80  },
       { id:'o_m50', title:'Wrong Genre Poem',       desc:'Perform a romantic love poem in the style of a legal document or technical manual.',                                       tip:'"Party of the first part" is funnier than you think.',               xp:75  },
     ],
@@ -703,8 +703,8 @@ export const SOLO_QUESTS = {
       { id:'o_h40', title:'Full Sensory Set',      desc:'Engage the audience\'s sight, sound, and physical sensation in a single performance without gimmicks.',                   tip:'Clapping, snapping, leaning — sensation doesn\'t require props.',    xp:125 },
       // ── Fun & Silly ──────────────────────────────────────────────────────────
       { id:'o_h41', title:'Comedy Roast',          desc:'Roast the entire open mic night, the host, the venue, and the audience in one set and get a standing ovation.',          tip:'Start with yourself — it licenses everything that follows.',          xp:130 },
-      { id:'o_h42', title:'Live Soundtrack',       desc:'Have your squad provide live sound effects and music for your entire performance from the audience.',                      tip:'Rehearse the cues — live sound without cues is just noise.',          xp:125 },
-      { id:'o_h43', title:'Reverse Heckle',        desc:'Heckle yourself during your own performance and respond to yourself better than any heckler could.',                      tip:'The responses have to be sharper than the heckling — write both.',   xp:130 },
+
+
       { id:'o_h44', title:'Full Persona Commit',   desc:'Perform as a fictional character so convincingly that audience members approach the character after, not you.',            tip:'Stay in character in the green room too — don\'t break early.',      xp:125 },
       { id:'o_h45', title:'Meta Performance',      desc:'Perform a piece entirely about the experience of performing at this specific open mic on this specific night in real time.', tip:'Write the opening line in the room — you can\'t prep the real-time details.', xp:120 },
       { id:'o_h46', title:'Audience Rebellion',    desc:'Build a performance specifically designed to make the audience rebel against you and then win them back.',                  tip:'The win-back has to be genuine — not a trick.',                      xp:130 },

@@ -10,11 +10,16 @@ import TimerSetupModal from './TimerSetupModal'
 import Stopwatch from './Stopwatch'
 
 // ─── Outing Picker ─────────────────────────────────────────────────────────────
-function OutingPicker({ onPick }) {
+function OutingPicker({ onPick, hasActiveGame }) {
   return (
     <div className="flex-1 flex flex-col min-h-0 animate-fade-in">
       <div className="text-center pt-2 pb-3 shrink-0">
         <h2 className="font-display text-xl font-black text-white">Where are you headed?</h2>
+        {hasActiveGame && (
+          <p className="font-display text-xs uppercase tracking-widest text-quest-gold mt-2">
+            You have a quest in progress
+          </p>
+        )}
         <p className="font-body text-sm text-gray-500 mt-1">Pick your outing to get tailored missions</p>
       </div>
       <div className="flex-1 flex flex-col gap-4 min-h-0">
@@ -498,7 +503,7 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
 }
 
 // ─── Main QuestMode ────────────────────────────────────────────────────────────
-export default function QuestMode({ onComplete, totalXP, onGameStart }) {
+export default function QuestMode({ onComplete, totalXP, onGameStart, activeGame }) {
   const [session, setSession, clearSession] = useActiveSession('nq_session_solo')
 
   // Derive state from persisted session (falls back to initial values)
@@ -555,7 +560,7 @@ export default function QuestMode({ onComplete, totalXP, onGameStart }) {
     onComplete(task)
   }, [onComplete, setSession])
 
-  const handleNewGame = () => clearSession()
+  const handleNewGame = () => setSession(s => ({ ...s, step: 'outing', completedIds: [], sessionXP: 0, tasks: [], timerEnabled: false, timerStartTime: null }))
 
   // Re-roll: same outing/difficulty, fresh missions, reset progress, stay active.
   const handleRerollMissions = useCallback(() => {
@@ -576,7 +581,7 @@ export default function QuestMode({ onComplete, totalXP, onGameStart }) {
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
-      {step === 'outing'     && <OutingPicker onPick={handleOutingPick} />}
+      {step === 'outing'     && <OutingPicker onPick={handleOutingPick} hasActiveGame={activeGame?.mode === 'quest'} />}
       {step === 'difficulty' && <DifficultyPicker outing={outing} onPick={handleDiffPick} onBack={() => setSession(s => ({ ...s, step: 'outing' }))} />}
       {step === 'timer'      && <TimerSetupModal onEnable={handleTimerEnable} onDisable={handleTimerDisable} />}
       {step === 'active'     && (

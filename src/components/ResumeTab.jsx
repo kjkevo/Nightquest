@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { Sword, Users, Zap, AlertCircle, CheckCircle, Circle, X } from 'lucide-react'
 
-export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitGame }) {
+export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitQuest, onQuitSquad }) {
   const [showQuitConfirm, setShowQuitConfirm] = useState(false)
 
   const handleQuitConfirm = () => {
     setShowQuitConfirm(false)
-    if (onQuitGame) onQuitGame()
+    if (activeGame?.mode === 'quest' && onQuitQuest) {
+      onQuitQuest()
+    } else if (activeGame?.mode === 'squad' && onQuitSquad) {
+      onQuitSquad()
+    }
   }
 
   if (!activeGame) {
@@ -119,7 +123,7 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, on
       )}
 
       {/* Quit Game Button */}
-      {onQuitGame && (
+      {(onQuitQuest || onQuitSquad) && (
         <button
           onClick={() => setShowQuitConfirm(true)}
           className="w-full py-2.5 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-all btn-press">

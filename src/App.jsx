@@ -226,6 +226,24 @@ export default function App() {
     addSessionXP(xp)
   }, [completeQuest, addSessionXP])
 
+  // Quit quest handler — reset quest session and return to outing picker
+  const handleQuitQuest = useCallback(() => {
+    try {
+      localStorage.removeItem('nq_session_solo')
+    } catch {}
+    setActiveGame(null)
+    setTab('quests')
+  }, [])
+
+  // Quit squad handler — reset squad session and return to squad mode
+  const handleQuitSquad = useCallback(() => {
+    try {
+      localStorage.removeItem('nq_session_squad')
+    } catch {}
+    setActiveGame(null)
+    setTab('squad')
+  }, [])
+
   return (
     <div className="min-h-screen bg-quest-bg text-white relative"
       onTouchStart={handleTouchStart}
@@ -258,9 +276,9 @@ export default function App() {
         <main className="flex-1 flex flex-col gap-4 px-4 pt-2 pb-28 max-w-lg mx-auto w-full overflow-y-auto">
           <XPBar levelInfo={levelInfo} />
 
-          {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
+          {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} activeGame={activeGame} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
           {tab === 'squad'  && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
-          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitGame={() => setActiveGame(null)} />}
+          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitQuest={handleQuitQuest} onQuitSquad={handleQuitSquad} />}
           {tab === 'plan'   && <PlanTab  onComplete={handleComplete} />}
           {tab === 'nights' && <NightsHub />}
         </main>
