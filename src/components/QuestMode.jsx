@@ -358,11 +358,11 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Stopwatch timer at the very top (if enabled) */}
-      {timerEnabled && timerStartTime && (
+      {timerEnabled === true && timerStartTime ? (
         <div className="bg-quest-gold/10 border-2 border-quest-gold rounded-2xl p-4 animate-fade-in">
           <Stopwatch startTime={timerStartTime} />
         </div>
-      )}
+      ) : null}
 
       {/* Header with XP pops */}
       <div className="relative flex items-center gap-3">
@@ -412,8 +412,8 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
         </div>
       </div>
 
-      {/* Search + category filter — shown when there are >3 tasks */}
-      {tasks.length > 3 && (
+      {/* Search + category filter — shown only when timer is enabled and there are >3 tasks */}
+      {timerEnabled && tasks.length > 3 && (
         <div className="space-y-2">
           {/* Search input */}
           <div className="relative">
@@ -522,7 +522,7 @@ export default function QuestMode({ onComplete, totalXP }) {
   const timerStartTime = session?.timerStartTime ?? null
 
   const handleOutingPick = (o) =>
-    setSession(s => ({ ...s, step: 'difficulty', outing: o, completedIds: [], sessionXP: 0 }))
+    setSession(s => ({ ...s, step: 'difficulty', outing: o, completedIds: [], sessionXP: 0, timerEnabled: false, timerStartTime: null }))
 
   // Shared: build a fresh set of tasks for an outing+difficulty, skipping
   // anything already seen (until the pool cycles). Returns the picks and
