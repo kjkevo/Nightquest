@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { Moon, Sword, Users, CalendarDays, Sun, Puzzle, BookOpen, Compass, Shield } from 'lucide-react'
+import { Moon, Sword, Users, CalendarDays, Sun, Puzzle, User, Compass, Shield } from 'lucide-react'
 
 import ParticleField  from './components/ParticleField'
 import LevelUpModal   from './components/LevelUpModal'
@@ -7,7 +7,7 @@ import QuestMode      from './components/QuestMode'
 import SquadMode      from './components/SquadMode'
 import CustomMode     from './components/CustomMode'
 import NightPlanner   from './components/NightPlanner'
-import NightsHub      from './components/NightsHub'
+import ProfileTab     from './components/ProfileTab'
 import VenueFeed      from './components/VenueFeed'
 import SafetyHub      from './components/SafetyHub'
 import ResumeTab      from './components/ResumeTab'
@@ -19,7 +19,7 @@ import { useMemories }   from './hooks/useMemories'
 import { getLevelInfo }  from './data/quests'
 import { getPlanParam }  from './hooks/usePlanner'
 
-const TAB_ORDER = ['quests', 'squad', 'resume', 'plan', 'nights']
+const TAB_ORDER = ['quests', 'squad', 'resume', 'plan', 'profile']
 
 // ─── XP Bar ───────────────────────────────────────────────────────────────────
 function XPBar({ levelInfo }) {
@@ -74,11 +74,11 @@ function ThemeToggle({ isDark, onToggle }) {
 // ─── Bottom Nav ───────────────────────────────────────────────────────────────
 function BottomNav({ tab, onChange, hasActiveGame }) {
   const tabs = [
-    { id: 'quests', label: 'Quest',  Icon: Sword        },
-    { id: 'squad',  label: 'Squad',  Icon: Users        },
-    { id: 'resume', label: 'Resume', Icon: Compass, badge: hasActiveGame },
-    { id: 'plan',   label: 'Plan',   Icon: CalendarDays },
-    { id: 'nights', label: 'Nights', Icon: BookOpen     },
+    { id: 'quests',  label: 'Quest',   Icon: Sword        },
+    { id: 'squad',   label: 'Squad',   Icon: Users        },
+    { id: 'resume',  label: 'Resume',  Icon: Compass, badge: hasActiveGame },
+    { id: 'plan',    label: 'Plan',    Icon: CalendarDays },
+    { id: 'profile', label: 'Profile', Icon: User         },
   ]
   return (
     <div className="fixed bottom-0 inset-x-0 z-40 bg-quest-bg border-t border-quest-border"
@@ -181,7 +181,7 @@ export default function App() {
     const p = params.get('tab')
     // Back-compat redirects
     if (p === 'planner' || p === 'custom' || p === 'safety' || p === 'explore') return 'plan'
-    if (p === 'journal' || p === 'history' || p === 'recap') return 'nights'
+    if (p === 'journal' || p === 'history' || p === 'recap' || p === 'nights') return 'profile'
     return TAB_ORDER.includes(p) ? p : 'quests'
   })
 
@@ -276,11 +276,11 @@ export default function App() {
         <main className="flex-1 flex flex-col gap-4 px-4 pt-2 pb-28 max-w-lg mx-auto w-full overflow-y-auto">
           <XPBar levelInfo={levelInfo} />
 
-          {tab === 'quests' && <QuestMode onComplete={handleComplete} totalXP={totalXP} activeGame={activeGame} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
-          {tab === 'squad'  && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
-          {tab === 'resume' && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitQuest={handleQuitQuest} onQuitSquad={handleQuitSquad} />}
-          {tab === 'plan'   && <PlanTab  onComplete={handleComplete} />}
-          {tab === 'nights' && <NightsHub />}
+          {tab === 'quests'  && <QuestMode onComplete={handleComplete} totalXP={totalXP} activeGame={activeGame} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
+          {tab === 'squad'   && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
+          {tab === 'resume'  && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitQuest={handleQuitQuest} onQuitSquad={handleQuitSquad} />}
+          {tab === 'plan'    && <PlanTab  onComplete={handleComplete} />}
+          {tab === 'profile' && <ProfileTab totalXP={totalXP} />}
         </main>
       </div>
 
