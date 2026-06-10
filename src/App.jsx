@@ -244,6 +244,37 @@ export default function App() {
     setTab('squad')
   }, [])
 
+  // Task toggle handler — mark/unmark mission as complete
+  const handleTaskToggle = useCallback((taskId) => {
+    setActiveGame(prev => {
+      if (!prev) return prev
+      const currentCompleted = prev.completedIds || []
+      const isCompleted = currentCompleted.includes(taskId)
+      const newCompleted = isCompleted
+        ? currentCompleted.filter(id => id !== taskId)
+        : [...currentCompleted, taskId]
+
+      const updated = { ...prev, completedIds: newCompleted }
+
+      // Also update underlying session storage
+      if (prev.mode === 'quest') {
+        try {
+          const session = JSON.parse(localStorage.getItem('nq_session_solo') || '{}')
+          session.completedIds = newCompleted
+          localStorage.setItem('nq_session_solo', JSON.stringify(session))
+        } catch {}
+      } else if (prev.mode === 'squad') {
+        try {
+          const session = JSON.parse(localStorage.getItem('nq_session_squad') || '{}')
+          session.completedIds = newCompleted
+          localStorage.setItem('nq_session_squad', JSON.stringify(session))
+        } catch {}
+      }
+
+      return updated
+    })
+  }, [])
+
   return (
     <div className="min-h-screen bg-quest-bg text-white relative"
       onTouchStart={handleTouchStart}
@@ -278,7 +309,7 @@ export default function App() {
 
           {tab === 'quests'  && <QuestMode onComplete={handleComplete} totalXP={totalXP} activeGame={activeGame} onGameStart={(gameData) => { setActiveGame({ mode: 'quest', ...gameData }); setTab('resume') }} />}
           {tab === 'squad'   && <SquadMode onComplete={handleComplete} totalXP={totalXP} onGameStart={(gameData) => { setActiveGame({ mode: 'squad', ...gameData }); setTab('resume') }} />}
-          {tab === 'resume'  && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitQuest={handleQuitQuest} onQuitSquad={handleQuitSquad} />}
+          {tab === 'resume'  && <ResumeTab activeGame={activeGame} onResumeQuest={() => setTab('quests')} onResumeSquad={() => setTab('squad')} onQuitQuest={handleQuitQuest} onQuitSquad={handleQuitSquad} onTaskToggle={handleTaskToggle} />}
           {tab === 'plan'    && <PlanTab  onComplete={handleComplete} />}
           {tab === 'profile' && <ProfileTab totalXP={totalXP} />}
         </main>

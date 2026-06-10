@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Sword, Users, Zap, AlertCircle, CheckCircle, Circle, X } from 'lucide-react'
 
-export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitQuest, onQuitSquad }) {
+export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, onQuitQuest, onQuitSquad, onTaskToggle }) {
   const [showQuitConfirm, setShowQuitConfirm] = useState(false)
 
   const handleQuitConfirm = () => {
@@ -10,6 +10,12 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, on
       onQuitQuest()
     } else if (activeGame?.mode === 'squad' && onQuitSquad) {
       onQuitSquad()
+    }
+  }
+
+  const handleTaskClick = (task) => {
+    if (onTaskToggle) {
+      onTaskToggle(task.id)
     }
   }
 
@@ -81,44 +87,40 @@ export default function ResumeTab({ activeGame, onResumeQuest, onResumeSquad, on
             <span className="ml-auto font-display text-xs text-gray-600">{activeGame.completed || 0} / {activeGame.total || 0} missions</span>
           </div>
         </div>
-
-        <button
-          onClick={() => {
-            if (activeGame.mode === 'quest') onResumeQuest()
-            else onResumeSquad()
-          }}
-          className="w-full py-3 mt-4 rounded-xl font-display text-sm font-black uppercase tracking-widest text-quest-bg btn-press transition-all hover:brightness-110"
-          style={{ background: 'linear-gradient(135deg,rgb(var(--nq-gold-dim)),rgb(var(--nq-gold)))' }}>
-          Resume Game →
-        </button>
       </div>
 
       {/* Missions List */}
       {activeGame.tasks && activeGame.tasks.length > 0 && (
         <div className="space-y-2">
-          <p className="font-display text-xs uppercase tracking-widest text-gray-600 px-1">Missions</p>
-          {activeGame.tasks.map((task) => (
-            <div key={task.id} className="flex items-start gap-3 p-3 rounded-lg bg-quest-panel border border-quest-border">
-              <div className="mt-1 shrink-0">
-                {activeGame.completedIds?.includes(task.id) ? (
-                  <CheckCircle size={16} className="text-green-400" />
-                ) : (
-                  <Circle size={16} className="text-gray-600" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className={`font-display text-xs font-bold ${activeGame.completedIds?.includes(task.id) ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
-                  {task.title}
-                </p>
-                <p className="font-body text-[10px] text-gray-600 mt-1 line-clamp-2">
-                  {task.desc || task.description}
-                </p>
-              </div>
-              <div className="shrink-0 text-right">
-                <p className="font-display text-xs font-bold text-quest-gold">+{task.xp}</p>
-              </div>
-            </div>
-          ))}
+          <p className="font-display text-xs uppercase tracking-widest text-gray-600 px-1">Missions (click to mark complete)</p>
+          {activeGame.tasks.map((task) => {
+            const isCompleted = activeGame.completedIds?.includes(task.id)
+            return (
+              <button
+                key={task.id}
+                onClick={() => handleTaskClick(task)}
+                className="w-full flex items-start gap-3 p-3 rounded-lg bg-quest-panel border border-quest-border hover:border-quest-gold-dim transition-colors cursor-pointer text-left">
+                <div className="mt-1 shrink-0">
+                  {isCompleted ? (
+                    <CheckCircle size={16} className="text-green-400" />
+                  ) : (
+                    <Circle size={16} className="text-gray-600" />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className={`font-display text-xs font-bold ${isCompleted ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
+                    {task.title}
+                  </p>
+                  <p className="font-body text-[10px] text-gray-600 mt-1 line-clamp-2">
+                    {task.desc || task.description}
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="font-display text-xs font-bold text-quest-gold">+{task.xp}</p>
+                </div>
+              </button>
+            )
+          })}
         </div>
       )}
 
