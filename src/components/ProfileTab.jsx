@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { useMemories } from '../hooks/useMemories'
 import { getLevelInfo } from '../data/quests'
+import IdentitySection from './IdentitySection'
 
 // ── Helper functions ──────────────────────────────────────────────────────────
 function timeAgo(ts) {
@@ -143,6 +144,9 @@ export default function ProfileTab({ totalXP }) {
 
   return (
     <div className="space-y-6 pb-4">
+      {/* Identity Section */}
+      <IdentitySection totalXP={totalXP} />
+
       {/* Profile Header */}
       <ProfileHeader stats={stats} levelInfo={levelInfo} />
 
