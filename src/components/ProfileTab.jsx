@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import {
   User, Trophy, Zap, MapPin, Flame, Calendar, BookOpen,
-  ChevronDown, ChevronUp, Trash2, Settings, LogOut, BarChart3, Award,
+  ChevronDown, ChevronUp, Trash2, Settings, LogOut, BarChart3, Award, Clock,
 } from 'lucide-react'
 import { useMemories } from '../hooks/useMemories'
 import { getLevelInfo } from '../data/quests'
@@ -9,6 +9,7 @@ import IdentitySection from './IdentitySection'
 import RankProgressionSection from './RankProgressionSection'
 import StatsDashboard from './StatsDashboard'
 import AchievementsSection from './AchievementsSection'
+import GameHistory from './GameHistory'
 
 // Collapsible Section Component
 function CollapsibleSection({ title, icon: Icon, isOpen, onToggle, children }) {
@@ -167,6 +168,7 @@ export default function ProfileTab({ totalXP }) {
     stats: false,
     achievements: false,
     nights: false,
+    gameHistory: false,
   })
 
   const levelInfo = getLevelInfo(totalXP)
@@ -204,6 +206,15 @@ export default function ProfileTab({ totalXP }) {
         isOpen={openSections.achievements}
         onToggle={() => toggleSection('achievements')}>
         <AchievementsSection />
+      </CollapsibleSection>
+
+      {/* Collapsible: Game History */}
+      <CollapsibleSection
+        title="Game History"
+        icon={Clock}
+        isOpen={openSections.gameHistory}
+        onToggle={() => toggleSection('gameHistory')}>
+        <GameHistory />
       </CollapsibleSection>
 
       {/* Collapsible: Nights History */}
