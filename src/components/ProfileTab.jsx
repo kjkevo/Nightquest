@@ -7,6 +7,7 @@ import { useMemories } from '../hooks/useMemories'
 import { getLevelInfo } from '../data/quests'
 import IdentitySection from './IdentitySection'
 import RankProgressionSection from './RankProgressionSection'
+import StatsDashboard from './StatsDashboard'
 
 // ── Helper functions ──────────────────────────────────────────────────────────
 function timeAgo(ts) {
@@ -150,6 +151,9 @@ export default function ProfileTab({ totalXP }) {
 
       {/* Rank & Progression Section */}
       <RankProgressionSection totalXP={totalXP} />
+
+      {/* Stats Dashboard */}
+      <StatsDashboard />
 
       {/* Profile Header */}
       <ProfileHeader stats={stats} levelInfo={levelInfo} />
