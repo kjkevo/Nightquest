@@ -11,6 +11,8 @@ import StatsDashboard from './StatsDashboard'
 import AchievementsSection from './AchievementsSection'
 import GameHistory from './GameHistory'
 import SquadSection from './SquadSection'
+import SettingsSection from './SettingsSection'
+
 // Collapsible Section Component
 function CollapsibleSection({ title, icon: Icon, isOpen, onToggle, children }) {
   return (
@@ -170,7 +172,7 @@ export default function ProfileTab({ totalXP }) {
     nights: false,
     gameHistory: false,
     squad: false,
-  })
+    settings: false,  })
 
   const levelInfo = getLevelInfo(totalXP)
 
@@ -294,6 +296,15 @@ export default function ProfileTab({ totalXP }) {
             </div>
           </div>
         )}
+      </CollapsibleSection>
+
+      {/* Collapsible: Settings & Preferences */}
+      <CollapsibleSection
+        title="Settings & Preferences"
+        icon={Settings}
+        isOpen={openSections.settings}
+        onToggle={() => toggleSection('settings')}>
+        <SettingsSection />
       </CollapsibleSection>
     </div>
   )
