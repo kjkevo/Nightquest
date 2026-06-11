@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import {
   User, Trophy, Zap, MapPin, Flame, Calendar, BookOpen,
-  ChevronDown, ChevronUp, Trash2, Settings, LogOut,
+  ChevronDown, ChevronUp, Trash2, Settings, LogOut, BarChart3, Award,
 } from 'lucide-react'
 import { useMemories } from '../hooks/useMemories'
 import { getLevelInfo } from '../data/quests'
@@ -9,6 +9,29 @@ import IdentitySection from './IdentitySection'
 import RankProgressionSection from './RankProgressionSection'
 import StatsDashboard from './StatsDashboard'
 import AchievementsSection from './AchievementsSection'
+
+// Collapsible Section Component
+function CollapsibleSection({ title, icon: Icon, isOpen, onToggle, children }) {
+  return (
+    <div>
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-4 rounded-xl bg-quest-panel border border-quest-border hover:border-quest-gold-dim transition-colors">
+        <div className="flex items-center gap-3">
+          <Icon size={18} className="text-quest-gold" />
+          <h3 className="font-display text-base font-bold text-white">{title}</h3>
+        </div>
+        {isOpen ? <ChevronUp size={18} className="text-gray-500" /> : <ChevronDown size={18} className="text-gray-500" />}
+      </button>
+
+      {isOpen && (
+        <div className="mt-3 space-y-4 animate-fade-in">
+          {children}
+        </div>
+      )}
+    </div>
+  )
+}
 
 // ── Helper functions ──────────────────────────────────────────────────────────
 function timeAgo(ts) {
@@ -140,35 +163,55 @@ export default function ProfileTab({ totalXP }) {
   const { nights, stats, bySemester, saveNight, deleteNight, clearAll } = useMemories()
   const [expandedSemester, setExpandedSemester] = useState(null)
   const [showClearConfirm, setShowClearConfirm] = useState(false)
+  const [openSections, setOpenSections] = useState({
+    stats: false,
+    achievements: false,
+    nights: false,
+  })
 
   const levelInfo = getLevelInfo(totalXP)
+
+  const toggleSection = (section) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section],
+    }))
+  }
 
   const semesters = Object.keys(bySemester).sort().reverse()
 
   return (
-    <div className="space-y-6 pb-4">
-      {/* Identity Section */}
+    <div className="space-y-4 pb-4">
+      {/* Always Visible: Identity Section */}
       <IdentitySection totalXP={totalXP} />
 
-      {/* Rank & Progression Section */}
+      {/* Always Visible: Rank & Progression Section */}
       <RankProgressionSection totalXP={totalXP} />
 
-      {/* Stats Dashboard */}
-      <StatsDashboard />
+      {/* Collapsible: Stats Dashboard */}
+      <CollapsibleSection
+        title="Stats Dashboard"
+        icon={BarChart3}
+        isOpen={openSections.stats}
+        onToggle={() => toggleSection('stats')}>
+        <StatsDashboard />
+      </CollapsibleSection>
 
-      {/* Achievements & Badges */}
-      <AchievementsSection />
+      {/* Collapsible: Achievements & Badges */}
+      <CollapsibleSection
+        title="Achievements & Badges"
+        icon={Award}
+        isOpen={openSections.achievements}
+        onToggle={() => toggleSection('achievements')}>
+        <AchievementsSection />
+      </CollapsibleSection>
 
-      {/* Profile Header */}
-      <ProfileHeader stats={stats} levelInfo={levelInfo} />
-
-      {/* Nights History */}
-      <div>
-        <h2 className="font-display text-lg font-black text-white mb-4">
-          <BookOpen size={16} className="inline mr-2" />
-          Nights Played
-        </h2>
-
+      {/* Collapsible: Nights History */}
+      <CollapsibleSection
+        title="Nights Played"
+        icon={BookOpen}
+        isOpen={openSections.nights}
+        onToggle={() => toggleSection('nights')}>
         {nights.length === 0 ? (
           <div className="text-center py-8">
             <Calendar size={32} className="text-gray-700 mx-auto mb-2" />
@@ -176,12 +219,12 @@ export default function ProfileTab({ totalXP }) {
             <p className="font-body text-xs text-gray-600 mt-1">Complete a quest to log your night</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-2">
             {semesters.map(semester => (
               <div key={semester}>
                 <button
                   onClick={() => setExpandedSemester(e => e === semester ? null : semester)}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-quest-panel border border-quest-border hover:border-quest-gold-dim transition-colors mb-2">
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-quest-bg border border-quest-border hover:border-quest-gold-dim transition-colors">
                   <p className="font-display text-sm font-bold text-gray-200">{semester}</p>
                   <div className="flex items-center gap-2">
                     <span className="font-display text-xs text-gray-500">{bySemester[semester].length} nights</span>
@@ -190,7 +233,7 @@ export default function ProfileTab({ totalXP }) {
                 </button>
 
                 {expandedSemester === semester && (
-                  <div className="space-y-2 ml-2">
+                  <div className="space-y-2 mt-2 ml-2">
                     {bySemester[semester].map(night => (
                       <NightCard key={night.id} night={night} onDelete={deleteNight} />
                     ))}
@@ -198,41 +241,39 @@ export default function ProfileTab({ totalXP }) {
                 )}
               </div>
             ))}
+
+            {/* Clear All Button */}
+            <div className="border-t border-quest-border pt-4 mt-4">
+              {showClearConfirm ? (
+                <div className="space-y-2">
+                  <p className="font-body text-sm text-gray-400 text-center">Clear all nights data? This cannot be undone.</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => setShowClearConfirm(false)}
+                      className="py-2 rounded-lg border border-quest-border font-display text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-gray-300 transition-colors">
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        clearAll()
+                        setShowClearConfirm(false)
+                      }}
+                      className="py-2 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors">
+                      Clear All
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowClearConfirm(true)}
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors">
+                  <Trash2 size={13} /> Clear History
+                </button>
+              )}
+            </div>
           </div>
         )}
-      </div>
-
-      {/* Clear All Button */}
-      {nights.length > 0 && (
-        <div className="border-t border-quest-border pt-4">
-          {showClearConfirm ? (
-            <div className="space-y-2">
-              <p className="font-body text-sm text-gray-400 text-center">Clear all nights data? This cannot be undone.</p>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => setShowClearConfirm(false)}
-                  className="py-2 rounded-lg border border-quest-border font-display text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-gray-300 transition-colors">
-                  Cancel
-                </button>
-                <button
-                  onClick={() => {
-                    clearAll()
-                    setShowClearConfirm(false)
-                  }}
-                  className="py-2 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors">
-                  Clear All
-                </button>
-              </div>
-            </div>
-          ) : (
-            <button
-              onClick={() => setShowClearConfirm(true)}
-              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg border border-red-900/40 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors">
-              <Trash2 size={13} /> Clear History
-            </button>
-          )}
-        </div>
-      )}
+      </CollapsibleSection>
     </div>
   )
 }
