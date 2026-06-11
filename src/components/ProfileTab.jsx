@@ -8,6 +8,7 @@ import { getLevelInfo } from '../data/quests'
 import IdentitySection from './IdentitySection'
 import RankProgressionSection from './RankProgressionSection'
 import StatsDashboard from './StatsDashboard'
+import AchievementsSection from './AchievementsSection'
 
 // ── Helper functions ──────────────────────────────────────────────────────────
 function timeAgo(ts) {
@@ -154,6 +155,9 @@ export default function ProfileTab({ totalXP }) {
 
       {/* Stats Dashboard */}
       <StatsDashboard />
+
+      {/* Achievements & Badges */}
+      <AchievementsSection />
 
       {/* Profile Header */}
       <ProfileHeader stats={stats} levelInfo={levelInfo} />

@@ -1,9 +1,12 @@
 import { useState } from 'react'
-import { User, Edit, Save, X, MapPin, Calendar } from 'lucide-react'
+import { User, Edit, Save, X, MapPin, Calendar, Star } from 'lucide-react'
 import { usePlayerProfile } from '../hooks/usePlayerProfile'
+import { useBadges } from '../hooks/useBadges'
 
 export default function IdentitySection({ totalXP }) {
   const { profile, setDisplayName, setAvatar, setMotto, setCampus, getAvatarEmoji, getAvatarLabel, formatMemberSince, AVATAR_PRESETS } = usePlayerProfile()
+  const { getPinnedBadgeDetails } = useBadges()
+  const pinnedBadges = getPinnedBadgeDetails()
   const [isEditing, setIsEditing] = useState(false)
   const [editForm, setEditForm] = useState({
     displayName: profile.displayName,
@@ -92,6 +95,26 @@ export default function IdentitySection({ totalXP }) {
             <Calendar size={14} className="text-quest-gold" />
             <p className="font-body text-xs">Member since {memberDate}</p>
           </div>
+
+          {/* Pinned Badges Showcase */}
+          {pinnedBadges.length > 0 && (
+            <div className="pt-3 border-t border-quest-border space-y-2">
+              <div className="flex items-center gap-1.5">
+                <Star size={12} className="text-quest-gold" />
+                <p className="font-display text-[9px] uppercase tracking-widest text-gray-500">Featured Badges</p>
+              </div>
+              <div className="flex gap-2 justify-center">
+                {pinnedBadges.map((badge, idx) => (
+                  <div
+                    key={idx}
+                    className="w-12 h-12 rounded-lg bg-quest-gold/10 border border-quest-gold/50 flex items-center justify-center text-xl hover:scale-110 transition-transform"
+                    title={badge.name}>
+                    {badge.icon}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         // Edit Mode
