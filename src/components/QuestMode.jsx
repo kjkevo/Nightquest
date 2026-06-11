@@ -540,7 +540,7 @@ export default function QuestMode({ onComplete, totalXP, onGameStart, activeGame
 
   const handleDiffPick = (d) => {
     const picked = pickFreshSet(outing, d)
-    setSession({ step: 'timer', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [], timerEnabled: false, timerStartTime: null })
+    setSession({ step: 'active', outing, difficulty: d, tasks: picked, sessionXP: 0, completedIds: [], timerEnabled: false, timerStartTime: null })
   }
 
   const handleTimerEnable = () => {
@@ -585,7 +585,6 @@ export default function QuestMode({ onComplete, totalXP, onGameStart, activeGame
     <div className="flex-1 flex flex-col min-h-0">
       {step === 'outing'     && <OutingPicker onPick={handleOutingPick} hasActiveGame={activeGame?.mode === 'quest'} />}
       {step === 'difficulty' && <DifficultyPicker outing={outing} onPick={handleDiffPick} onBack={() => setSession(s => ({ ...s, step: 'outing' }))} />}
-      {step === 'timer'      && <TimerSetupModal onEnable={handleTimerEnable} onDisable={handleTimerDisable} />}
       {step === 'active'     && (
         <ActiveTaskList
           tasks={tasks}
