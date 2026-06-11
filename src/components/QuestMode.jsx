@@ -4,6 +4,7 @@ import { OUTING_TYPES, DIFFICULTIES, pickQuestSet } from '../data/outingQuests'
 import { useActiveSession } from '../hooks/useActiveSession'
 import { useNightTimer } from '../hooks/useNightTimer'
 import { inferCategory, estimateMins, ALL_CATEGORIES } from '../data/questMeta'
+import QuestCompleteModal from './QuestCompleteModal'
 import NightComplete from './NightComplete'
 import NightTimerBar from './NightTimerBar'
 import TimerSetupModal from './TimerSetupModal'
@@ -266,6 +267,7 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
   // user has completed everything, NightComplete renders regardless of whether
   // the parent's session state has updated yet.
   const [forceComplete, setForceComplete] = useState(false)
+  const [showQuestComplete, setShowQuestComplete] = useState(false)
 
   // Reset force flag if a new set of tasks arrives (e.g. after re-roll).
   useEffect(() => { setForceComplete(false) }, [tasks])
@@ -345,18 +347,18 @@ function ActiveTaskList({ tasks, difficulty, outing, onTaskComplete, onNewGame, 
 
   // ── All done → show completion screen ─────────────────────────────────────
   if (allDone) {
+    // Show the quick "Quest Complete" modal first, then handle navigation
     return (
-      <NightComplete
-        outing={outing}
-        difficulty={difficulty}
-        xpEarned={totalXPEarned}
-        tasksCompleted={Math.max(done, tasks.length)}
-        totalXP={totalXP}
-        // "Same Again" → re-roll fresh missions with same outing+difficulty
-        onPlayAgain={onRerollMissions ?? onNewGame}
-        onNewOuting={onNewGame}
-        onReturnHome={onNewGame}
-      />
+      <>
+        <QuestCompleteModal
+          isVisible={true}
+          onBackToCastle={() => {
+            // This returns user to outing picker (Quest section)
+            // The NightComplete auto-saves their progress, so we navigate them back
+            onNewGame()
+          }}
+        />
+      </>
     )
   }
 
