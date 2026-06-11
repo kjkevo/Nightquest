@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Settings, Sun, Moon, Bell, Download, Trash2, Copy, Info } from 'lucide-react'
+import { Settings, Sun, Moon, Bell, Download, Trash2, Copy, Info, AlertCircle } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { usePlayerProfile } from '../hooks/usePlayerProfile'
 
-const NQ_DATA_KEYS = [
+// All app data keys (excluding rank/progression which should NEVER be deleted)
+const NQ_DELETABLE_KEYS = [
   'nq_badges',
   'nq_campus_numbers',
   'nq_checkin_timer',
@@ -36,10 +37,19 @@ const NQ_DATA_KEYS = [
   'nq_setup',
   'nq_squad_room',
   'nq_squad_rooms',
-  'nq_theme',
   'nq_trusted_contacts',
   'nq_vs_games',
+  // NEVER DELETE: 'nq_xp' - Rank and progression are permanent
+  // NEVER DELETE: 'nq_theme' - Theme preference is permanent
+  // NEVER DELETE: 'nq_notifications_enabled' - Notification preference is permanent
+]
+
+// All data keys for export (including rank/progression)
+const NQ_EXPORT_KEYS = [
+  ...NQ_DELETABLE_KEYS,
   'nq_xp',
+  'nq_theme',
+  'nq_notifications_enabled',
 ]
 
 export default function SettingsSection() {
@@ -71,8 +81,8 @@ export default function SettingsSection() {
     try {
       const allData = {}
       
-      // Collect all nq_ prefixed data
-      NQ_DATA_KEYS.forEach(key => {
+      // Collect all nq_ prefixed data (including rank/progression)
+      NQ_EXPORT_KEYS.forEach(key => {
         const value = localStorage.getItem(key)
         if (value !== null) {
           try {
@@ -102,11 +112,11 @@ export default function SettingsSection() {
     }
   }
 
-  // Delete all user data
-  const handleDeleteAllData = () => {
+  // Delete game data EXCEPT rank/progression (which is permanent)
+  const handleDeleteGameData = () => {
     try {
-      // Delete all nq_ prefixed keys
-      NQ_DATA_KEYS.forEach(key => {
+      // Delete only deletable keys (never delete rank/progression)
+      NQ_DELETABLE_KEYS.forEach(key => {
         localStorage.removeItem(key)
       })
       
@@ -230,7 +240,7 @@ export default function SettingsSection() {
         <div className="flex items-start gap-2 p-3 rounded-lg bg-blue-900/20 border border-blue-800/50">
           <Info size={16} className="text-blue-400 mt-0.5 flex-shrink-0" />
           <p className="font-body text-xs text-blue-300">
-            Your data is stored locally on your device. You can export it anytime or delete everything.
+            Your data is stored locally on your device. You can export it anytime. Your rank and progression are permanently saved.
           </p>
         </div>
 
@@ -266,15 +276,21 @@ export default function SettingsSection() {
             <div className="flex items-center gap-3">
               <Trash2 size={18} />
               <div className="text-left">
-                <p className="font-display text-sm font-bold">Delete All Data</p>
-                <p className="font-body text-xs text-gray-600">Permanently erase everything</p>
+                <p className="font-display text-sm font-bold">Clear Game Data</p>
+                <p className="font-body text-xs text-gray-600">Reset progress (rank stays)</p>
               </div>
             </div>
           </button>
         ) : (
           <div className="space-y-2 p-3 rounded-lg border border-red-800/50 bg-red-900/20">
+            <div className="flex items-start gap-2 mb-2">
+              <AlertCircle size={14} className="text-yellow-400 mt-0.5 flex-shrink-0" />
+              <p className="font-body text-xs text-yellow-300">
+                Your <span className="font-bold">rank and progression are permanent</span> and will be kept. Only game history and other data will be cleared.
+              </p>
+            </div>
             <p className="font-body text-sm text-red-300">
-              Delete all data? This cannot be undone. You'll start fresh.
+              Clear all game data? You'll start fresh, but your level and rank badges stay forever.
             </p>
             <div className="flex gap-2">
               <button
@@ -283,13 +299,21 @@ export default function SettingsSection() {
                 Cancel
               </button>
               <button
-                onClick={handleDeleteAllData}
+                onClick={handleDeleteGameData}
                 className="flex-1 py-2 rounded-lg border border-red-700 bg-red-700/20 font-display text-xs font-bold uppercase tracking-widest text-red-400 hover:text-red-300 transition-colors btn-press">
-                Delete All
+                Clear Data
               </button>
             </div>
           </div>
         )}
+      </div>
+
+      {/* Permanent Data Notice */}
+      <div className="bg-quest-gold/10 border border-quest-gold/30 rounded-lg p-3 space-y-1">
+        <p className="font-display text-xs uppercase tracking-widest text-quest-gold">🏆 Permanent Forever</p>
+        <p className="font-body text-xs text-gray-300">
+          Your XP, rank level, and rank badges are <span className="font-bold text-quest-gold">permanently saved</span> and will never be deleted. They'll keep growing as you level up!
+        </p>
       </div>
 
       {/* Privacy Notice */}
