@@ -6,7 +6,6 @@ export default function QuestCompleteModal({ isVisible, onBackToCastle }) {
 
   useEffect(() => {
     if (isVisible) {
-      // Small delay to trigger animation after mount
       const timer = setTimeout(() => setAnimate(true), 50)
       return () => clearTimeout(timer)
     } else {
@@ -18,17 +17,20 @@ export default function QuestCompleteModal({ isVisible, onBackToCastle }) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity duration-300 ${
-        animate ? 'opacity-100' : 'opacity-0'
+      className={`fixed inset-0 flex items-center justify-center p-4 overflow-y-auto transition-opacity duration-300 ${
+        animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
       style={{
+        zIndex: 9999,
         background: 'rgba(5,5,10,0.95)',
         backdropFilter: 'blur(8px)',
       }}>
       <div
-        className={`relative w-full max-w-sm text-center space-y-6 transition-all duration-500 ${
+        className={`relative w-full max-w-sm my-auto text-center space-y-6 transition-all duration-500 ${
           animate ? 'scale-100 translate-y-0' : 'scale-90 translate-y-8'
-        }`}>
+        }`}
+        style={{ zIndex: 10000 }}>
+        
         {/* Animated celebration emojis */}
         <div className="flex justify-center gap-4 text-4xl mb-2">
           <span className="animate-bounce" style={{ animationDelay: '0s' }}>✨</span>
@@ -50,27 +52,26 @@ export default function QuestCompleteModal({ isVisible, onBackToCastle }) {
           </p>
         </div>
 
-        {/* Back to Castle Button */}
+        {/* Return to Quest Button */}
         <button
           onClick={onBackToCastle}
-          className="w-full flex items-center justify-center gap-3 py-4 rounded-xl bg-gradient-to-r from-quest-gold-dim to-quest-gold text-quest-bg font-display text-sm font-black uppercase tracking-widest hover:brightness-110 transition-all btn-press shadow-lg"
+          className="w-full flex items-center justify-center gap-3 py-4 rounded-xl bg-gradient-to-r from-quest-gold-dim to-quest-gold text-quest-bg font-display text-sm font-black uppercase tracking-widest hover:brightness-110 transition-all btn-press"
           style={{
             boxShadow: '0 0 20px rgba(240,192,96,0.3)',
+            zIndex: 10001,
           }}>
           <Castle size={18} />
           Return to Quest
         </button>
 
-        {/* Decorative elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
-          {/* Glow effect */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-3xl opacity-20"
-            style={{
-              background: 'radial-gradient(circle, rgba(240,192,96,0.3), transparent)',
-            }}
-          />
-        </div>
+        {/* Decorative glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(240,192,96,0.15) 0%, transparent 70%)',
+            borderRadius: '0.75rem',
+          }}
+        />
       </div>
     </div>
   )
