@@ -16,6 +16,7 @@ import { useNightTimer } from '../hooks/useNightTimer'
 import { useSquadSync, getSessionKey } from '../hooks/useSquadSync'
 import { createRoom, joinByCode, getRoomFromUrl, clearRoomParam, getShareUrl } from '../hooks/useSquadRoom'
 import { pickFreshTasks } from '../hooks/useSeenTasks'
+import QuestCompleteModal from './QuestCompleteModal'
 import NightComplete from './NightComplete'
 import VSCodeWaitingScreen from './VSCodeWaitingScreen'
 import VSEventDifficultyAgreement from './VSEventDifficultyAgreement'
@@ -308,18 +309,15 @@ function ActiveTaskList({ tasks: initialTasks, difficulty, outing, onTaskComplet
   const allDone = forceComplete || (done === total && total > 0)
   if (allDone) {
     return (
-      <NightComplete
-        outing={outing}
-        difficulty={difficulty}
-        xpEarned={xpEarned}
-        tasksCompleted={Math.max(done, initialTasks.length)}
-        totalXP={totalXP}
-        // "Same Again" → re-roll fresh missions with same squad if available,
-        // otherwise fall back to returning to the menu.
-        onPlayAgain={onRerollMissions ?? onNewGame}
-        onNewOuting={onNewGame}
-        onReturnHome={onNewGame}
-      />
+      <>
+        <QuestCompleteModal
+          isVisible={true}
+          onBackToCastle={() => {
+            // Return to quest selection
+            onNewGame()
+          }}
+        />
+      </>
     )
   }
 

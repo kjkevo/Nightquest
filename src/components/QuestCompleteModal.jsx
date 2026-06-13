@@ -58,7 +58,7 @@ export default function QuestCompleteModal({ isVisible, onBackToCastle }) {
             boxShadow: '0 0 20px rgba(240,192,96,0.3)',
           }}>
           <Castle size={18} />
-          Back to Castle
+          Return to Quest
         </button>
 
         {/* Decorative elements */}
