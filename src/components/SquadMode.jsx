@@ -17,6 +17,8 @@ import { useSquadSync, getSessionKey } from '../hooks/useSquadSync'
 import { createRoom, joinByCode, getRoomFromUrl, clearRoomParam, getShareUrl } from '../hooks/useSquadRoom'
 import { pickFreshTasks } from '../hooks/useSeenTasks'
 import NightComplete from './NightComplete'
+import VSCodeWaitingScreen from './VSCodeWaitingScreen'
+import VSEventDifficultyAgreement from './VSEventDifficultyAgreement'
 import NightTimerBar from './NightTimerBar'
 import SquadSyncPanel from './SquadSyncPanel'
 
@@ -1160,39 +1162,39 @@ export default function SquadMode({ onComplete, totalXP, onGameStart }) {
   if (view === 'vsTeamName') {
     return <div className="pb-4"><TeamNameEntry
       onBack={() => setView('vsSize')}
-      onConfirm={(name) => { setVsTeam1(name); setView('vsOuting') }}
+      onConfirm={(name) => {
+        setVsTeam1(name)
+        const code = genCode()
+        setVsCode(code)
+        setView('vsCodeWaiting')
+      }}
     /></div>
   }
-  if (view === 'vsOuting') {
-    return <div className="space-y-4 pb-4 animate-fade-in">
-      <div className="flex items-center gap-3">
-        <BackBtn onClick={() => setView('vsTeamName')} />
-        <p className="font-display text-sm font-bold text-white">Where are you headed?</p>
-      </div>
-      <OutingGrid onPick={(o) => { setOuting(o); setView('vsDiff') }} />
-    </div>
+  if (view === 'vsCodeWaiting') {
+    return <div className="pb-4"><VSCodeWaitingScreen
+      code={vsCode}
+      teamName={vsTeam1}
+      onTeamJoined={() => setView('vsEventDiffWait')}
+      onBack={() => setView('vsTeamName')}
+    /></div>
   }
-  if (view === 'vsDiff') {
-    return <div className="space-y-4 pb-4 animate-fade-in">
-      <div className="flex items-center gap-3">
-        <BackBtn onClick={() => setView('vsOuting')} />
-        <div>
-          <p className="font-display text-[10px] uppercase tracking-widest text-gray-600">{outing.emoji} {outing.label}</p>
-          <p className="font-display text-sm font-bold text-white">Pick difficulty</p>
-        </div>
-      </div>
-      <DiffGrid onPick={(d) => {
-        const t = buildTasks(outing.id, d.id, players)
-        const code = genCode()
-        // Save base game to localStorage so team 2 can join
-        saveVS({ code, outingId: outing.id, difficultyId: d.id, rawTasks: t.map(q => ({ id: q.id, title: q.title, desc: q.desc, tip: q.tip, xp: q.xp })), team1: vsTeam1, createdAt: Date.now() })
-        setDiff(d); setTasks(t); setVsCode(code); setView('vsCode')
-      }} />
-    </div>
+  if (view === 'vsEventDiffWait') {
+    return <div className="pb-4"><VSEventDifficultyAgreement
+      teamName={vsTeam1}
+      team2Name={vsTeam2}
+      code={vsCode}
+      onStart={(outing, difficulty) => {
+        const t = buildTasks(outing.id, difficulty.id, players)
+        saveVS({ code: vsCode, outingId: outing.id, difficultyId: difficulty.id, rawTasks: t.map(q => ({ id: q.id, title: q.title, desc: q.desc, tip: q.tip, xp: q.xp })), team1: vsTeam1, team2: vsTeam2, createdAt: Date.now() })
+        setOuting(outing)
+        setDiff(difficulty)
+        setTasks(t)
+        setView('vsActive')
+      }}
+      onBack={() => setView('vsCodeWaiting')}
+    /></div>
   }
-  if (view === 'vsCode') {
-    return <div className="pb-4"><VSCodeShare code={vsCode} teamName={vsTeam1} onContinue={() => setView('vsActive')} /></div>
-  }
+
   if (view === 'vsActive') {
     return <div className="pb-4 space-y-4">
       <VSScoreboard team1={vsTeam1} team2={vsTeam2 || '???'} team1Done={vsT1Done} team2Done={vsT2Done} />
